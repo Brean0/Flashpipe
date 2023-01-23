@@ -1,0 +1,5 @@
+ds-test/=lib/forge-std/lib/ds-test/src/
+forge-std/=lib/forge-std/src/
+mocks=contracts/mocks/
+oz/=lib/openzeppelin-contracts/contracts/
+ozu/=lib/openzeppelin-contracts-upgradeable/contracts/

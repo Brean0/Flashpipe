@@ -1,0 +1,2066 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "target",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "callData",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes",
+              "name": "clipboard",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct AdvancedPipeCall[]",
+          "name": "pipes",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "advancedPipe",
+      "outputs": [
+        {
+          "internalType": "bytes[]",
+          "name": "results",
+          "type": "bytes[]"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "target",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct PipeCall",
+          "name": "p",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "etherPipe",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "result",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "target",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct PipeCall[]",
+          "name": "pipes",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "multiPipe",
+      "outputs": [
+        {
+          "internalType": "bytes[]",
+          "name": "results",
+          "type": "bytes[]"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "target",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct PipeCall",
+          "name": "p",
+          "type": "tuple"
+        }
+      ],
+      "name": "pipe",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "result",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "target",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct PipeCall",
+          "name": "p",
+          "type": "tuple"
+        }
+      ],
+      "name": "readPipe",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "result",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x608060405234801561001057600080fd5b50610a93806100206000396000f3fe60806040526004361061005a5760003560e01c8063b452c7ae11610043578063b452c7ae1461009b578063cabec62b146100bb578063dd756c4f146100ce5761005a565b806308e1a0ab1461005f5780636e47d07b14610088575b600080fd5b61007261006d3660046106bd565b6100ee565b60405161007f9190610959565b60405180910390f35b6100726100963660046106f0565b610184565b6100ae6100a93660046105ba565b61021d565b60405161007f91906107da565b6100ae6100c9366004610604565b6102b9565b3480156100da57600080fd5b506100726100e93660046106bd565b61034b565b6040516308e1a0ab60e01b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa906308e1a0ab9061012890859060040161096c565b600060405180830381600087803b15801561014257600080fd5b505af1158015610156573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f1916820160405261017e9190810190610644565b92915050565b6040516308e1a0ab60e01b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa906308e1a0ab9084906101c090879060040161096c565b6000604051808303818588803b1580156101d957600080fd5b505af11580156101ed573d6000803e3d6000fd5b50505050506040513d6000823e601f3d908101601f191682016040526102169190810190610644565b9392505050565b604051630e0506af60e11b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa90631c0a0d5e90849061025b908890889060040161083a565b6000604051808303818588803b15801561027457600080fd5b505af1158015610288573d6000803e3d6000fd5b50505050506040513d6000823e601f3d908101601f191682016040526102b19190810190610521565b949350505050565b60405163cabec62b60e01b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa9063cabec62b906102f590869086906004016108eb565b600060405180830381600087803b15801561030f57600080fd5b505af1158015610323573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f191682016040526102169190810190610521565b6060600061035c6020840184610507565b6001600160a01b0316610372602085018561097f565b6040516103809291906107ca565b600060405180830381855afa9150503d80600081146103bb576040519150601f19603f3d011682016040523d82523d6000602084013e6103c0565b606091505b50925090506103cf81836103d5565b50919050565b81610425576044815110156103e957600080fd5b600481019050808060200190518101906104039190610677565b60405162461bcd60e51b815260040161041c9190610959565b60405180910390fd5b5050565b600067ffffffffffffffff83111561043d57fe5b610450601f8401601f19166020016109c4565b905082815283838301111561046457600080fd5b610216836020830184610a2d565b80356001600160a01b038116811461048957600080fd5b919050565b60008083601f84011261049f578182fd5b50813567ffffffffffffffff8111156104b6578182fd5b60208301915083602080830285010111156104d057600080fd5b9250929050565b600082601f8301126104e7578081fd5b61021683835160208501610429565b6000604082840312156103cf578081fd5b600060208284031215610518578081fd5b61021682610472565b60006020808385031215610533578182fd5b825167ffffffffffffffff8082111561054a578384fd5b818501915085601f83011261055d578384fd5b81518181111561056957fe5b61057684858302016109c4565b8181528481019250838501865b838110156105ac5761059a8a8884518901016104d7565b85529386019390860190600101610583565b509098975050505050505050565b6000806000604084860312156105ce578182fd5b833567ffffffffffffffff8111156105e4578283fd5b6105f08682870161048e565b909790965060209590950135949350505050565b60008060208385031215610616578182fd5b823567ffffffffffffffff81111561062c578283fd5b6106388582860161048e565b90969095509350505050565b600060208284031215610655578081fd5b815167ffffffffffffffff81111561066b578182fd5b6102b1848285016104d7565b600060208284031215610688578081fd5b815167ffffffffffffffff81111561069e578182fd5b8201601f810184136106ae578182fd5b6102b184825160208401610429565b6000602082840312156106ce578081fd5b813567ffffffffffffffff8111156106e4578182fd5b6102b1848285016104f6565b60008060408385031215610702578182fd5b823567ffffffffffffffff811115610718578283fd5b610724858286016104f6565b95602094909401359450505050565b60008284528282602086013780602084860101526020601f19601f85011685010190509392505050565b60008151808452610775816020860160208601610a2d565b601f01601f19169290920160200192915050565b60006001600160a01b0361079c83610472565b1683526107ac60208301836109e8565b604060208601526107c1604086018284610733565b95945050505050565b6000828483379101908152919050565b6000602080830181845280855180835260408601915060408482028701019250838701855b8281101561082d57603f1988860301845261081b85835161075d565b945092850192908501906001016107ff565b5092979650505050505050565b602080825281810183905260009060408084018583028501820187855b888110156105ac57878303603f190184528135368b9003605e1901811261087c578788fd5b8a0160606001600160a01b0361089183610472565b1685526108a0888301836109e8565b828a8801526108b28388018284610733565b925050506108c2878301836109e8565b9250858203888701526108d6828483610733565b96890196955050509186019150600101610857565b602080825281810183905260009060408482028401810190840186845b8781101561094c57868403603f190183528135368a9003603e1901811261092d578687fd5b610939858b8301610789565b9450509184019190840190600101610908565b5091979650505050505050565b600060208252610216602083018461075d565b6000602082526102166020830184610789565b6000808335601e19843603018112610995578283fd5b83018035915067ffffffffffffffff8211156109af578283fd5b6020019150368190038213156104d057600080fd5b60405181810167ffffffffffffffff811182821017156109e057fe5b604052919050565b6000808335601e198436030181126109fe578283fd5b830160208101925035905067ffffffffffffffff811115610a1e57600080fd5b8036038313156104d057600080fd5b60005b83811015610a48578181015183820152602001610a30565b83811115610a57576000848401525b5050505056fea2646970667358221220f1b3fe9b7a58f806a784ffe60372603fa0433beaad0bcdb71213278c12234f0b64736f6c63430007060033",
+    "sourceMap": "483:2382:2:-:0;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x60806040526004361061005a5760003560e01c8063b452c7ae11610043578063b452c7ae1461009b578063cabec62b146100bb578063dd756c4f146100ce5761005a565b806308e1a0ab1461005f5780636e47d07b14610088575b600080fd5b61007261006d3660046106bd565b6100ee565b60405161007f9190610959565b60405180910390f35b6100726100963660046106f0565b610184565b6100ae6100a93660046105ba565b61021d565b60405161007f91906107da565b6100ae6100c9366004610604565b6102b9565b3480156100da57600080fd5b506100726100e93660046106bd565b61034b565b6040516308e1a0ab60e01b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa906308e1a0ab9061012890859060040161096c565b600060405180830381600087803b15801561014257600080fd5b505af1158015610156573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f1916820160405261017e9190810190610644565b92915050565b6040516308e1a0ab60e01b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa906308e1a0ab9084906101c090879060040161096c565b6000604051808303818588803b1580156101d957600080fd5b505af11580156101ed573d6000803e3d6000fd5b50505050506040513d6000823e601f3d908101601f191682016040526102169190810190610644565b9392505050565b604051630e0506af60e11b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa90631c0a0d5e90849061025b908890889060040161083a565b6000604051808303818588803b15801561027457600080fd5b505af1158015610288573d6000803e3d6000fd5b50505050506040513d6000823e601f3d908101601f191682016040526102b19190810190610521565b949350505050565b60405163cabec62b60e01b815260609073b1be0000bfdcddc92a8290202830c4ef689dceaa9063cabec62b906102f590869086906004016108eb565b600060405180830381600087803b15801561030f57600080fd5b505af1158015610323573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f191682016040526102169190810190610521565b6060600061035c6020840184610507565b6001600160a01b0316610372602085018561097f565b6040516103809291906107ca565b600060405180830381855afa9150503d80600081146103bb576040519150601f19603f3d011682016040523d82523d6000602084013e6103c0565b606091505b50925090506103cf81836103d5565b50919050565b81610425576044815110156103e957600080fd5b600481019050808060200190518101906104039190610677565b60405162461bcd60e51b815260040161041c9190610959565b60405180910390fd5b5050565b600067ffffffffffffffff83111561043d57fe5b610450601f8401601f19166020016109c4565b905082815283838301111561046457600080fd5b610216836020830184610a2d565b80356001600160a01b038116811461048957600080fd5b919050565b60008083601f84011261049f578182fd5b50813567ffffffffffffffff8111156104b6578182fd5b60208301915083602080830285010111156104d057600080fd5b9250929050565b600082601f8301126104e7578081fd5b61021683835160208501610429565b6000604082840312156103cf578081fd5b600060208284031215610518578081fd5b61021682610472565b60006020808385031215610533578182fd5b825167ffffffffffffffff8082111561054a578384fd5b818501915085601f83011261055d578384fd5b81518181111561056957fe5b61057684858302016109c4565b8181528481019250838501865b838110156105ac5761059a8a8884518901016104d7565b85529386019390860190600101610583565b509098975050505050505050565b6000806000604084860312156105ce578182fd5b833567ffffffffffffffff8111156105e4578283fd5b6105f08682870161048e565b909790965060209590950135949350505050565b60008060208385031215610616578182fd5b823567ffffffffffffffff81111561062c578283fd5b6106388582860161048e565b90969095509350505050565b600060208284031215610655578081fd5b815167ffffffffffffffff81111561066b578182fd5b6102b1848285016104d7565b600060208284031215610688578081fd5b815167ffffffffffffffff81111561069e578182fd5b8201601f810184136106ae578182fd5b6102b184825160208401610429565b6000602082840312156106ce578081fd5b813567ffffffffffffffff8111156106e4578182fd5b6102b1848285016104f6565b60008060408385031215610702578182fd5b823567ffffffffffffffff811115610718578283fd5b610724858286016104f6565b95602094909401359450505050565b60008284528282602086013780602084860101526020601f19601f85011685010190509392505050565b60008151808452610775816020860160208601610a2d565b601f01601f19169290920160200192915050565b60006001600160a01b0361079c83610472565b1683526107ac60208301836109e8565b604060208601526107c1604086018284610733565b95945050505050565b6000828483379101908152919050565b6000602080830181845280855180835260408601915060408482028701019250838701855b8281101561082d57603f1988860301845261081b85835161075d565b945092850192908501906001016107ff565b5092979650505050505050565b602080825281810183905260009060408084018583028501820187855b888110156105ac57878303603f190184528135368b9003605e1901811261087c578788fd5b8a0160606001600160a01b0361089183610472565b1685526108a0888301836109e8565b828a8801526108b28388018284610733565b925050506108c2878301836109e8565b9250858203888701526108d6828483610733565b96890196955050509186019150600101610857565b602080825281810183905260009060408482028401810190840186845b8781101561094c57868403603f190183528135368a9003603e1901811261092d578687fd5b610939858b8301610789565b9450509184019190840190600101610908565b5091979650505050505050565b600060208252610216602083018461075d565b6000602082526102166020830184610789565b6000808335601e19843603018112610995578283fd5b83018035915067ffffffffffffffff8211156109af578283fd5b6020019150368190038213156104d057600080fd5b60405181810167ffffffffffffffff811182821017156109e057fe5b604052919050565b6000808335601e198436030181126109fe578283fd5b830160208101925035905067ffffffffffffffff811115610a1e57600080fd5b8036038313156104d057600080fd5b60005b83811015610a48578181015183820152602001610a30565b83811115610a57576000848401525b5050505056fea2646970667358221220f1b3fe9b7a58f806a784ffe60372603fa0433beaad0bcdb71213278c12234f0b64736f6c63430007060033",
+    "sourceMap": "483:2382:2:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;798:163;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;2132:228;;;;;;:::i;:::-;;:::i;1634:261::-;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;1217:187::-;;;;;;:::i;:::-;;:::i;2555:308::-;;;;;;;;;;-1:-1:-1;2555:308:2;;;;;:::i;:::-;;:::i;798:163::-;927:27;;-1:-1:-1;;;927:27:2;;883:19;;553:42;;927:24;;:27;;952:1;;927:27;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;927:27:2;;;;;;;;;;;;:::i;:::-;918:36;798:163;-1:-1:-1;;798:163:2:o;2132:228::-;2281:41;;-1:-1:-1;;;2281:41:2;;2237:19;;553:42;;2281:24;;2313:5;;2281:41;;2320:1;;2281:41;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;2281:41:2;;;;;;;;;;;;:::i;:::-;2272:50;2132:228;-1:-1:-1;;;2132:228:2:o;1634:261::-;1804:53;;-1:-1:-1;;;1804:53:2;;1756:22;;553:42;;1804:32;;1844:5;;1804:53;;1851:5;;;;1804:53;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;1804:53:2;;;;;;;;;;;;:::i;:::-;1794:63;1634:261;-1:-1:-1;;;;1634:261:2:o;1217:187::-;1361:36;;-1:-1:-1;;;1361:36:2;;1313:22;;553:42;;1361:29;;:36;;1391:5;;;;1361:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;1361:36:2;;;;;;;;;;;;:::i;2555:308::-;2641:19;2676:12;2779:8;;;;:1;:8;:::i;:::-;-1:-1:-1;;;;;2779:19:2;2799:6;;;;:1;:6;:::i;:::-;2779:27;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;2759:47:2;-1:-1:-1;2759:47:2;-1:-1:-1;2816:40:2;2759:47;;2816:23;:40::i;:::-;2555:308;;;;:::o;456:487:8:-;541:7;536:401;;783:2;767:6;:13;:18;763:32;;;787:8;;;763:32;858:4;850:6;846:17;836:27;;908:6;897:28;;;;;;;;;;;;:::i;:::-;890:36;;-1:-1:-1;;;890:36:8;;;;;;;;:::i;:::-;;;;;;;;536:401;456:487;;:::o;14:371:43:-;;125:18;117:6;114:30;111:2;;;147:9;111:2;176:58;222:2;199:17;;-1:-1:-1;;195:31:43;228:4;191:42;176:58;:::i;:::-;167:67;;257:6;250:5;243:21;297:3;288:6;283:3;279:16;276:25;273:2;;;314:1;311;304:12;273:2;327:52;372:6;365:4;358:5;354:16;349:3;327:52;:::i;390:198::-;460:20;;-1:-1:-1;;;;;509:54:43;;499:65;;489:2;;578:1;575;568:12;489:2;441:147;;;:::o;593:430::-;;;752:3;745:4;737:6;733:17;729:27;719:2;;777:8;767;760:26;719:2;-1:-1:-1;807:20:43;;850:18;839:30;;836:2;;;889:8;879;872:26;836:2;933:4;925:6;921:17;909:29;;996:3;989:4;981;973:6;969:17;961:6;957:30;953:41;950:50;947:2;;;1013:1;1010;1003:12;947:2;709:314;;;;;:::o;1028:247::-;;1136:3;1129:4;1121:6;1117:17;1113:27;1103:2;;1158:5;1151;1144:20;1103:2;1184:85;1265:3;1256:6;1250:13;1243:4;1235:6;1231:17;1184:85;:::i;1280:167::-;;1389:2;1380:6;1375:3;1371:16;1367:25;1364:2;;;1409:5;1402;1395:20;1452:198;;1564:2;1552:9;1543:7;1539:23;1535:32;1532:2;;;1585:6;1577;1570:22;1532:2;1613:31;1634:9;1613:31;:::i;1655:957::-;;1790:2;1833;1821:9;1812:7;1808:23;1804:32;1801:2;;;1854:6;1846;1839:22;1801:2;1892:9;1886:16;1921:18;1962:2;1954:6;1951:14;1948:2;;;1983:6;1975;1968:22;1948:2;2026:6;2015:9;2011:22;2001:32;;2071:7;2064:4;2060:2;2056:13;2052:27;2042:2;;2098:6;2090;2083:22;2042:2;2132;2126:9;2154:2;2150;2147:10;2144:2;;;2160:9;2144:2;2191:36;2223:2;2218;2214;2210:11;2206:20;2191:36;:::i;:::-;2261:15;;;2292:12;;;;-1:-1:-1;2324:11:43;;;2353:6;2368:214;2382:2;2379:1;2376:9;2368:214;;;2439:68;2499:7;2494:2;2487:3;2481:10;2477:2;2473:19;2469:28;2439:68;:::i;:::-;2427:81;;2528:12;;;;2560;;;;2400:1;2393:9;2368:214;;;-1:-1:-1;2601:5:43;;1770:842;-1:-1:-1;;;;;;;;1770:842:43:o;2617:593::-;;;;2817:2;2805:9;2796:7;2792:23;2788:32;2785:2;;;2838:6;2830;2823:22;2785:2;2883:9;2870:23;2916:18;2908:6;2905:30;2902:2;;;2953:6;2945;2938:22;2902:2;2997:102;3091:7;3082:6;3071:9;3067:22;2997:102;:::i;:::-;3118:8;;2971:128;;-1:-1:-1;3200:2:43;3185:18;;;;3172:32;;2775:435;-1:-1:-1;;;;2775:435:43:o;3215:517::-;;;3390:2;3378:9;3369:7;3365:23;3361:32;3358:2;;;3411:6;3403;3396:22;3358:2;3456:9;3443:23;3489:18;3481:6;3478:30;3475:2;;;3526:6;3518;3511:22;3475:2;3570:102;3664:7;3655:6;3644:9;3640:22;3570:102;:::i;:::-;3691:8;;3544:128;;-1:-1:-1;3348:384:43;-1:-1:-1;;;;3348:384:43:o;3737:357::-;;3869:2;3857:9;3848:7;3844:23;3840:32;3837:2;;;3890:6;3882;3875:22;3837:2;3928:9;3922:16;3961:18;3953:6;3950:30;3947:2;;;3998:6;3990;3983:22;3947:2;4026:62;4080:7;4071:6;4060:9;4056:22;4026:62;:::i;4099:490::-;;4232:2;4220:9;4211:7;4207:23;4203:32;4200:2;;;4253:6;4245;4238:22;4200:2;4291:9;4285:16;4324:18;4316:6;4313:30;4310:2;;;4361:6;4353;4346:22;4310:2;4389:22;;4442:4;4434:13;;4430:27;-1:-1:-1;4420:2:43;;4476:6;4468;4461:22;4420:2;4504:79;4575:7;4570:2;4564:9;4559:2;4555;4551:11;4504:79;:::i;4594:381::-;;4734:2;4722:9;4713:7;4709:23;4705:32;4702:2;;;4755:6;4747;4740:22;4702:2;4800:9;4787:23;4833:18;4825:6;4822:30;4819:2;;;4870:6;4862;4855:22;4819:2;4898:71;4961:7;4952:6;4941:9;4937:22;4898:71;:::i;4980:449::-;;;5137:2;5125:9;5116:7;5112:23;5108:32;5105:2;;;5158:6;5150;5143:22;5105:2;5203:9;5190:23;5236:18;5228:6;5225:30;5222:2;;;5273:6;5265;5258:22;5222:2;5301:71;5364:7;5355:6;5344:9;5340:22;5301:71;:::i;:::-;5291:81;5419:2;5404:18;;;;5391:32;;-1:-1:-1;;;;5095:334:43:o;5434:270::-;;5524:6;5519:3;5512:19;5576:6;5569:5;5562:4;5557:3;5553:14;5540:43;5628:3;5621:4;5612:6;5607:3;5603:16;5599:27;5592:40;5693:4;5686:2;5682:7;5677:2;5669:6;5665:15;5661:29;5656:3;5652:39;5648:50;5641:57;;5502:202;;;;;:::o;5709:259::-;;5790:5;5784:12;5817:6;5812:3;5805:19;5833:63;5889:6;5882:4;5877:3;5873:14;5866:4;5859:5;5855:16;5833:63;:::i;:::-;5950:2;5929:15;-1:-1:-1;;5925:29:43;5916:39;;;;5957:4;5912:50;;5760:208;-1:-1:-1;;5760:208:43:o;5973:400::-;;-1:-1:-1;;;;;6070:27:43;6091:5;6070:27;:::i;:::-;6066:76;6061:3;6054:89;6186:57;6237:4;6230:5;6226:16;6219:5;6186:57;:::i;:::-;6275:4;6268;6263:3;6259:14;6252:28;6296:71;6361:4;6356:3;6352:14;6338:12;6324;6296:71;:::i;:::-;6289:78;6044:329;-1:-1:-1;;;;;6044:329:43:o;6378:273::-;;6561:6;6553;6548:3;6535:33;6587:16;;6612:15;;;6587:16;6525:126;-1:-1:-1;6525:126:43:o;6656:806::-;;6845:2;6885;6874:9;6870:18;6915:2;6904:9;6897:21;6938:6;6973;6967:13;7004:6;6996;6989:22;7042:2;7031:9;7027:18;7020:25;;7105:2;7099;7091:6;7087:15;7076:9;7072:31;7068:40;7054:54;;7143:2;7135:6;7131:15;7164:4;7177:256;7191:6;7188:1;7185:13;7177:256;;;7284:2;7280:7;7268:9;7260:6;7256:22;7252:36;7247:3;7240:49;7312:41;7346:6;7337;7331:13;7312:41;:::i;:::-;7302:51;-1:-1:-1;7411:12:43;;;;7376:15;;;;7213:1;7206:9;7177:256;;;-1:-1:-1;7450:6:43;;6825:637;-1:-1:-1;;;;;;;6825:637:43:o;7467:1635::-;7718:2;7770:21;;;7743:18;;;7826:22;;;7467:1635;;7867:2;7885:18;;;7945:15;;;7930:31;;7926:40;;7989:6;7467:1635;8026:1047;8040:6;8037:1;8034:13;8026:1047;;;8105:22;;;-1:-1:-1;;8101:36:43;8089:49;;8177:20;;8252:14;8248:27;;;-1:-1:-1;;8244:41:43;8220:66;;8210:2;;8303:4;8297;8290:18;8210:2;8336:31;;8390:4;-1:-1:-1;;;;;8426:27:43;8336:31;8426:27;:::i;:::-;8422:76;8414:6;8407:92;8546:55;8597:2;8590:5;8586:14;8579:5;8546:55;:::i;:::-;8638:2;8633;8625:6;8621:15;8614:27;8668:72;8736:2;8728:6;8724:15;8710:12;8696;8668:72;:::i;:::-;8654:86;;;;8791:55;8842:2;8835:5;8831:14;8824:5;8791:55;:::i;:::-;8753:93;;8895:6;8887;8883:19;8878:2;8870:6;8866:15;8859:44;8926:67;8986:6;8970:14;8954;8926:67;:::i;:::-;9051:12;;;;8916:77;-1:-1:-1;;;9016:15:43;;;;-1:-1:-1;8062:1:43;8055:9;8026:1047;;9107:1017;9342:2;9394:21;;;9367:18;;;9450:22;;;-1:-1:-1;;9503:2:43;9548:15;;;9533:31;;9529:40;;;9488:18;;9592:6;-1:-1:-1;9629:466:43;9643:6;9640:1;9637:13;9629:466;;;9708:22;;;-1:-1:-1;;9704:36:43;9692:49;;9780:20;;9855:14;9851:27;;;-1:-1:-1;;9847:41:43;9823:66;;9813:2;;9906:4;9900;9893:18;9813:2;9936:79;10008:6;9999;9979:18;9975:31;9936:79;:::i;:::-;9926:89;-1:-1:-1;;10073:12:43;;;;10038:15;;;;9665:1;9658:9;9629:466;;;-1:-1:-1;10112:6:43;;9322:802;-1:-1:-1;;;;;;;9322:802:43:o;10129:219::-;;10276:2;10265:9;10258:21;10296:46;10338:2;10327:9;10323:18;10315:6;10296:46;:::i;10579:275::-;;10762:2;10751:9;10744:21;10782:66;10844:2;10833:9;10829:18;10821:6;10782:66;:::i;10859:533::-;;;11002:11;10989:25;11096:2;11092:7;11081:8;11065:14;11061:29;11057:43;11037:18;11033:68;11023:2;;11118:4;11112;11105:18;11023:2;11148:33;;11200:20;;;-1:-1:-1;11243:18:43;11232:30;;11229:2;;;11278:4;11272;11265:18;11229:2;11314:4;11302:17;;-1:-1:-1;11345:14:43;11341:27;;;11331:38;;11328:2;;;11382:1;11379;11372:12;11397:242;11467:2;11461:9;11497:17;;;11544:18;11529:34;;11565:22;;;11526:62;11523:2;;;11591:9;11523:2;11618;11611:22;11441:198;;-1:-1:-1;11441:198:43:o;11644:513::-;;;11771:3;11758:17;11857:2;11853:7;11842:8;11826:14;11822:29;11818:43;11798:18;11794:68;11784:2;;11880:5;11873;11866:20;11784:2;11912:33;;12016:4;12003:18;;;-1:-1:-1;11964:21:43;;-1:-1:-1;12044:18:43;12033:30;;12030:2;;;12076:1;12073;12066:12;12030:2;12126:6;12110:14;12106:27;12096:8;12092:42;12089:2;;;12147:1;12144;12137:12;12162:258;12234:1;12244:113;12258:6;12255:1;12252:13;12244:113;;;12334:11;;;12328:18;12315:11;;;12308:39;12280:2;12273:10;12244:113;;;12375:6;12372:1;12369:13;12366:2;;;12410:1;12401:6;12396:3;12392:16;12385:27;12366:2;;12215:205;;;:::o",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "advancedPipe((address,bytes,bytes)[],uint256)": "b452c7ae",
+    "etherPipe((address,bytes),uint256)": "6e47d07b",
+    "multiPipe((address,bytes)[])": "cabec62b",
+    "pipe((address,bytes))": "08e1a0ab",
+    "readPipe((address,bytes))": "dd756c4f"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"callData\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"clipboard\",\"type\":\"bytes\"}],\"internalType\":\"struct AdvancedPipeCall[]\",\"name\":\"pipes\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"advancedPipe\",\"outputs\":[{\"internalType\":\"bytes[]\",\"name\":\"results\",\"type\":\"bytes[]\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct PipeCall\",\"name\":\"p\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"etherPipe\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"result\",\"type\":\"bytes\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct PipeCall[]\",\"name\":\"pipes\",\"type\":\"tuple[]\"}],\"name\":\"multiPipe\",\"outputs\":[{\"internalType\":\"bytes[]\",\"name\":\"results\",\"type\":\"bytes[]\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct PipeCall\",\"name\":\"p\",\"type\":\"tuple\"}],\"name\":\"pipe\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"result\",\"type\":\"bytes\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct PipeCall\",\"name\":\"p\",\"type\":\"tuple\"}],\"name\":\"readPipe\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"result\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Publius\",\"kind\":\"dev\",\"methods\":{\"advancedPipe((address,bytes,bytes)[],uint256)\":{\"params\":{\"pipes\":\"list of AdvancedPipeCalls to pipe through Pipeline\"},\"returns\":{\"results\":\"list of return values from each AdvancedPipeCall*\"}},\"etherPipe((address,bytes),uint256)\":{\"params\":{\"p\":\"PipeCall to pipe through Pipeline\",\"value\":\"Ether value to send in Pipecall\"},\"returns\":{\"result\":\"PipeCall return value*\"}},\"multiPipe((address,bytes)[])\":{\"params\":{\"pipes\":\"list of PipeCalls to pipe through Pipeline\"},\"returns\":{\"results\":\"list of return values from each PipeCall*\"}},\"pipe((address,bytes))\":{\"params\":{\"p\":\"PipeCall to pipe through Pipeline\"},\"returns\":{\"result\":\"PipeCall return value*\"}},\"readPipe((address,bytes))\":{\"params\":{\"p\":\"PipeCall to execute with a staticcall\"},\"returns\":{\"result\":\"PipeCall return value*\"}}},\"title\":\"Depot Facet\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"advancedPipe((address,bytes,bytes)[],uint256)\":{\"notice\":\"Pipe multiple AdvancedPipeCalls through Pipeline.\"},\"etherPipe((address,bytes),uint256)\":{\"notice\":\"Pipe a PipeCall through Pipeline with an Ether value.\"},\"multiPipe((address,bytes)[])\":{\"notice\":\"Pipe multiple PipeCalls through Pipeline. Does not support sending Ether in the call\"},\"pipe((address,bytes))\":{\"notice\":\"Pipe a PipeCall through Pipeline.\"},\"readPipe((address,bytes))\":{\"notice\":\"Return the return value of a PipeCall without executing it.\"}},\"notice\":\"DepotFacet wraps Pipeline's Pipe functions to facilitate the loading of non-Ether assets in Pipeline in the same transaction that loads Ether, Pipes calls to other protocols and unloads Pipeline.*\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/facets/DepotFacet.sol\":\"DepotFacet\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":800},\"remappings\":[\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@prb/test/=lib/prb-math/lib/prb-test/src/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\",\":mocks/=contracts/mocks/\",\":oz/=lib/openzeppelin-contracts/contracts/\",\":ozu/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":prb-math/=lib/prb-math/src/\",\":prb-test/=lib/prb-math/lib/prb-test/src/\",\":src/=lib/prb-math/src/\"]},\"sources\":{\"contracts/facets/DepotFacet.sol\":{\"keccak256\":\"0x77827a0b2d410c191c8fd547b1ce454e26b4199a38063cce34f18bb3af0f6b4e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://05e78c9d4ba6b28ab132b9e8ed6dba6ef29aa0ee3460ea4a509d62e0e81ab8a1\",\"dweb:/ipfs/QmQmXmHbpaXBJWiwJdP1pSZhwjcCwmR7bie3fUKmpSzKGN\"]},\"contracts/interfaces/IPipeline.sol\":{\"keccak256\":\"0x7177b4a4dcada6f6970419e230831e13645c76e8e7d9dee21474dcb762f73d3a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d9c24ec7790fd9143327e654a339ee64ce7894c6af25b782948206026cb90c46\",\"dweb:/ipfs/QmX9LUcYWbMrpLhTnvqjFJ3WK82q3GoMVDsXHDzk1VbbYu\"]},\"contracts/libraries/LibFunction.sol\":{\"keccak256\":\"0x3efab5a39ac04cc974aeb77feefe8e300e738359f6abdbeb127d41b07334a5d6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ae7509bec01c4abfa8329e16911057c291180c8983730fd7e5a24e0d1c9c3a60\",\"dweb:/ipfs/QmRo3mZumVthn8K1t2cc7VAVadfHKvHvQhHth7Scp9QVUx\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "struct AdvancedPipeCall[]",
+              "name": "pipes",
+              "type": "tuple[]",
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "target",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "callData",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "clipboard",
+                  "type": "bytes"
+                }
+              ]
+            },
+            {
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "advancedPipe",
+          "outputs": [
+            {
+              "internalType": "bytes[]",
+              "name": "results",
+              "type": "bytes[]"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "struct PipeCall",
+              "name": "p",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "target",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ]
+            },
+            {
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "etherPipe",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "result",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "struct PipeCall[]",
+              "name": "pipes",
+              "type": "tuple[]",
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "target",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ]
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "multiPipe",
+          "outputs": [
+            {
+              "internalType": "bytes[]",
+              "name": "results",
+              "type": "bytes[]"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "struct PipeCall",
+              "name": "p",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "target",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ]
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "pipe",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "result",
+              "type": "bytes"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "struct PipeCall",
+              "name": "p",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "target",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ]
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "readPipe",
+          "outputs": [
+            {
+              "internalType": "bytes",
+              "name": "result",
+              "type": "bytes"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "advancedPipe((address,bytes,bytes)[],uint256)": {
+            "params": {
+              "pipes": "list of AdvancedPipeCalls to pipe through Pipeline"
+            },
+            "returns": {
+              "results": "list of return values from each AdvancedPipeCall*"
+            }
+          },
+          "etherPipe((address,bytes),uint256)": {
+            "params": {
+              "p": "PipeCall to pipe through Pipeline",
+              "value": "Ether value to send in Pipecall"
+            },
+            "returns": {
+              "result": "PipeCall return value*"
+            }
+          },
+          "multiPipe((address,bytes)[])": {
+            "params": {
+              "pipes": "list of PipeCalls to pipe through Pipeline"
+            },
+            "returns": {
+              "results": "list of return values from each PipeCall*"
+            }
+          },
+          "pipe((address,bytes))": {
+            "params": {
+              "p": "PipeCall to pipe through Pipeline"
+            },
+            "returns": {
+              "result": "PipeCall return value*"
+            }
+          },
+          "readPipe((address,bytes))": {
+            "params": {
+              "p": "PipeCall to execute with a staticcall"
+            },
+            "returns": {
+              "result": "PipeCall return value*"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "advancedPipe((address,bytes,bytes)[],uint256)": {
+            "notice": "Pipe multiple AdvancedPipeCalls through Pipeline."
+          },
+          "etherPipe((address,bytes),uint256)": {
+            "notice": "Pipe a PipeCall through Pipeline with an Ether value."
+          },
+          "multiPipe((address,bytes)[])": {
+            "notice": "Pipe multiple PipeCalls through Pipeline. Does not support sending Ether in the call"
+          },
+          "pipe((address,bytes))": {
+            "notice": "Pipe a PipeCall through Pipeline."
+          },
+          "readPipe((address,bytes))": {
+            "notice": "Return the return value of a PipeCall without executing it."
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@ensdomains/=node_modules/@ensdomains/",
+        ":@openzeppelin/=node_modules/@openzeppelin/",
+        ":@prb/test/=lib/prb-math/lib/prb-test/src/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        ":forge-std/=lib/forge-std/src/",
+        ":hardhat/=node_modules/hardhat/",
+        ":mocks/=contracts/mocks/",
+        ":oz/=lib/openzeppelin-contracts/contracts/",
+        ":ozu/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":prb-math/=lib/prb-math/src/",
+        ":prb-test/=lib/prb-math/lib/prb-test/src/",
+        ":src/=lib/prb-math/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 800
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "contracts/facets/DepotFacet.sol": "DepotFacet"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "contracts/facets/DepotFacet.sol": {
+        "keccak256": "0x77827a0b2d410c191c8fd547b1ce454e26b4199a38063cce34f18bb3af0f6b4e",
+        "urls": [
+          "bzz-raw://05e78c9d4ba6b28ab132b9e8ed6dba6ef29aa0ee3460ea4a509d62e0e81ab8a1",
+          "dweb:/ipfs/QmQmXmHbpaXBJWiwJdP1pSZhwjcCwmR7bie3fUKmpSzKGN"
+        ],
+        "license": "MIT"
+      },
+      "contracts/interfaces/IPipeline.sol": {
+        "keccak256": "0x7177b4a4dcada6f6970419e230831e13645c76e8e7d9dee21474dcb762f73d3a",
+        "urls": [
+          "bzz-raw://d9c24ec7790fd9143327e654a339ee64ce7894c6af25b782948206026cb90c46",
+          "dweb:/ipfs/QmX9LUcYWbMrpLhTnvqjFJ3WK82q3GoMVDsXHDzk1VbbYu"
+        ],
+        "license": "MIT"
+      },
+      "contracts/libraries/LibFunction.sol": {
+        "keccak256": "0x3efab5a39ac04cc974aeb77feefe8e300e738359f6abdbeb127d41b07334a5d6",
+        "urls": [
+          "bzz-raw://ae7509bec01c4abfa8329e16911057c291180c8983730fd7e5a24e0d1c9c3a60",
+          "dweb:/ipfs/QmRo3mZumVthn8K1t2cc7VAVadfHKvHvQhHth7Scp9QVUx"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "contracts/facets/DepotFacet.sol",
+    "id": 1937,
+    "exportedSymbols": {
+      "AdvancedPipeCall": [
+        2683
+      ],
+      "DepotFacet": [
+        1936
+      ],
+      "IPipeline": [
+        2709
+      ],
+      "LibFunction": [
+        2915
+      ],
+      "PipeCall": [
+        2676
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "42:2824:2",
+    "nodes": [
+      {
+        "id": 1814,
+        "nodeType": "PragmaDirective",
+        "src": "42:23:2",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".6"
+        ]
+      },
+      {
+        "id": 1815,
+        "nodeType": "PragmaDirective",
+        "src": "66:33:2",
+        "nodes": [],
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ]
+      },
+      {
+        "id": 1816,
+        "nodeType": "ImportDirective",
+        "src": "101:37:2",
+        "nodes": [],
+        "absolutePath": "contracts/interfaces/IPipeline.sol",
+        "file": "../interfaces/IPipeline.sol",
+        "scope": 1937,
+        "sourceUnit": 2710,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 1817,
+        "nodeType": "ImportDirective",
+        "src": "139:38:2",
+        "nodes": [],
+        "absolutePath": "contracts/libraries/LibFunction.sol",
+        "file": "../libraries/LibFunction.sol",
+        "scope": 1937,
+        "sourceUnit": 2916,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 1936,
+        "nodeType": "ContractDefinition",
+        "src": "483:2382:2",
+        "nodes": [
+          {
+            "id": 1821,
+            "nodeType": "VariableDeclaration",
+            "src": "509:86:2",
+            "nodes": [],
+            "constant": true,
+            "mutability": "constant",
+            "name": "PIPELINE",
+            "scope": 1936,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 1819,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "509:7:2",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "hexValue": "307862316245303030306246646344446339324138323930323032383330433445663638396443656161",
+              "id": 1820,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "553:42:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              },
+              "value": "0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa"
+            },
+            "visibility": "private"
+          },
+          {
+            "id": 1839,
+            "nodeType": "FunctionDefinition",
+            "src": "798:163:2",
+            "nodes": [],
+            "body": {
+              "id": 1838,
+              "nodeType": "Block",
+              "src": "908:53:2",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1836,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 1829,
+                      "name": "result",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1827,
+                      "src": "918:6:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 1834,
+                          "name": "p",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1824,
+                          "src": "952:1:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                            "typeString": "struct PipeCall calldata"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                            "typeString": "struct PipeCall calldata"
+                          }
+                        ],
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 1831,
+                              "name": "PIPELINE",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1821,
+                              "src": "937:8:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "id": 1830,
+                            "name": "IPipeline",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2709,
+                            "src": "927:9:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_IPipeline_$2709_$",
+                              "typeString": "type(contract IPipeline)"
+                            }
+                          },
+                          "id": 1832,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "927:19:2",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_IPipeline_$2709",
+                            "typeString": "contract IPipeline"
+                          }
+                        },
+                        "id": 1833,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "pipe",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 2690,
+                        "src": "927:24:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_payable$_t_struct$_PipeCall_$2676_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                          "typeString": "function (struct PipeCall memory) payable external returns (bytes memory)"
+                        }
+                      },
+                      "id": 1835,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "927:27:2",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes memory"
+                      }
+                    },
+                    "src": "918:36:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "id": 1837,
+                  "nodeType": "ExpressionStatement",
+                  "src": "918:36:2"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1822,
+              "nodeType": "StructuredDocumentation",
+              "src": "639:154:2",
+              "text": " @notice Pipe a PipeCall through Pipeline.\n @param p PipeCall to pipe through Pipeline\n @return result PipeCall return value*"
+            },
+            "functionSelector": "08e1a0ab",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "pipe",
+            "parameters": {
+              "id": 1825,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1824,
+                  "mutability": "mutable",
+                  "name": "p",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1839,
+                  "src": "812:19:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                    "typeString": "struct PipeCall"
+                  },
+                  "typeName": {
+                    "id": 1823,
+                    "name": "PipeCall",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 2676,
+                    "src": "812:8:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PipeCall_$2676_storage_ptr",
+                      "typeString": "struct PipeCall"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "811:21:2"
+            },
+            "returnParameters": {
+              "id": 1828,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1827,
+                  "mutability": "mutable",
+                  "name": "result",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1839,
+                  "src": "883:19:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 1826,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "883:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "882:21:2"
+            },
+            "scope": 1936,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 1859,
+            "nodeType": "FunctionDefinition",
+            "src": "1217:187:2",
+            "nodes": [],
+            "body": {
+              "id": 1858,
+              "nodeType": "Block",
+              "src": "1341:63:2",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1856,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 1849,
+                      "name": "results",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1847,
+                      "src": "1351:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                        "typeString": "bytes memory[] memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 1854,
+                          "name": "pipes",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1843,
+                          "src": "1391:5:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_struct$_PipeCall_$2676_calldata_ptr_$dyn_calldata_ptr",
+                            "typeString": "struct PipeCall calldata[] calldata"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_array$_t_struct$_PipeCall_$2676_calldata_ptr_$dyn_calldata_ptr",
+                            "typeString": "struct PipeCall calldata[] calldata"
+                          }
+                        ],
+                        "expression": {
+                          "arguments": [
+                            {
+                              "id": 1851,
+                              "name": "PIPELINE",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1821,
+                              "src": "1371:8:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            ],
+                            "id": 1850,
+                            "name": "IPipeline",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2709,
+                            "src": "1361:9:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_IPipeline_$2709_$",
+                              "typeString": "type(contract IPipeline)"
+                            }
+                          },
+                          "id": 1852,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1361:19:2",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_IPipeline_$2709",
+                            "typeString": "contract IPipeline"
+                          }
+                        },
+                        "id": 1853,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "multiPipe",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 2699,
+                        "src": "1361:29:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_payable$_t_array$_t_struct$_PipeCall_$2676_memory_ptr_$dyn_memory_ptr_$returns$_t_array$_t_bytes_memory_ptr_$dyn_memory_ptr_$",
+                          "typeString": "function (struct PipeCall memory[] memory) payable external returns (bytes memory[] memory)"
+                        }
+                      },
+                      "id": 1855,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1361:36:2",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                        "typeString": "bytes memory[] memory"
+                      }
+                    },
+                    "src": "1351:46:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                      "typeString": "bytes memory[] memory"
+                    }
+                  },
+                  "id": 1857,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1351:46:2"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1840,
+              "nodeType": "StructuredDocumentation",
+              "src": "967:245:2",
+              "text": " @notice Pipe multiple PipeCalls through Pipeline.\n Does not support sending Ether in the call\n @param pipes list of PipeCalls to pipe through Pipeline\n @return results list of return values from each PipeCall*"
+            },
+            "functionSelector": "cabec62b",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "multiPipe",
+            "parameters": {
+              "id": 1844,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1843,
+                  "mutability": "mutable",
+                  "name": "pipes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1859,
+                  "src": "1236:25:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_PipeCall_$2676_calldata_ptr_$dyn_calldata_ptr",
+                    "typeString": "struct PipeCall[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1841,
+                      "name": "PipeCall",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 2676,
+                      "src": "1236:8:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PipeCall_$2676_storage_ptr",
+                        "typeString": "struct PipeCall"
+                      }
+                    },
+                    "id": 1842,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1236:10:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_PipeCall_$2676_storage_$dyn_storage_ptr",
+                      "typeString": "struct PipeCall[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1235:27:2"
+            },
+            "returnParameters": {
+              "id": 1848,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1847,
+                  "mutability": "mutable",
+                  "name": "results",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1859,
+                  "src": "1313:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "bytes[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1845,
+                      "name": "bytes",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1313:5:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage_ptr",
+                        "typeString": "bytes"
+                      }
+                    },
+                    "id": 1846,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1313:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                      "typeString": "bytes[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1312:24:2"
+            },
+            "scope": 1936,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 1883,
+            "nodeType": "FunctionDefinition",
+            "src": "1634:261:2",
+            "nodes": [],
+            "body": {
+              "id": 1882,
+              "nodeType": "Block",
+              "src": "1784:111:2",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1880,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 1871,
+                      "name": "results",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1869,
+                      "src": "1794:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                        "typeString": "bytes memory[] memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 1878,
+                          "name": "pipes",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1863,
+                          "src": "1851:5:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_struct$_AdvancedPipeCall_$2683_calldata_ptr_$dyn_calldata_ptr",
+                            "typeString": "struct AdvancedPipeCall calldata[] calldata"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_array$_t_struct$_AdvancedPipeCall_$2683_calldata_ptr_$dyn_calldata_ptr",
+                            "typeString": "struct AdvancedPipeCall calldata[] calldata"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_array$_t_struct$_AdvancedPipeCall_$2683_calldata_ptr_$dyn_calldata_ptr",
+                              "typeString": "struct AdvancedPipeCall calldata[] calldata"
+                            }
+                          ],
+                          "expression": {
+                            "arguments": [
+                              {
+                                "id": 1873,
+                                "name": "PIPELINE",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1821,
+                                "src": "1814:8:2",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "id": 1872,
+                              "name": "IPipeline",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2709,
+                              "src": "1804:9:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_IPipeline_$2709_$",
+                                "typeString": "type(contract IPipeline)"
+                              }
+                            },
+                            "id": 1874,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1804:19:2",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IPipeline_$2709",
+                              "typeString": "contract IPipeline"
+                            }
+                          },
+                          "id": 1875,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "advancedPipe",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2708,
+                          "src": "1804:32:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_payable$_t_array$_t_struct$_AdvancedPipeCall_$2683_memory_ptr_$dyn_memory_ptr_$returns$_t_array$_t_bytes_memory_ptr_$dyn_memory_ptr_$",
+                            "typeString": "function (struct AdvancedPipeCall memory[] memory) payable external returns (bytes memory[] memory)"
+                          }
+                        },
+                        "id": 1877,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "names": [
+                          "value"
+                        ],
+                        "nodeType": "FunctionCallOptions",
+                        "options": [
+                          {
+                            "id": 1876,
+                            "name": "value",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1865,
+                            "src": "1844:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "src": "1804:46:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_payable$_t_array$_t_struct$_AdvancedPipeCall_$2683_memory_ptr_$dyn_memory_ptr_$returns$_t_array$_t_bytes_memory_ptr_$dyn_memory_ptr_$value",
+                          "typeString": "function (struct AdvancedPipeCall memory[] memory) payable external returns (bytes memory[] memory)"
+                        }
+                      },
+                      "id": 1879,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1804:53:2",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                        "typeString": "bytes memory[] memory"
+                      }
+                    },
+                    "src": "1794:63:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                      "typeString": "bytes memory[] memory"
+                    }
+                  },
+                  "id": 1881,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1794:63:2"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1860,
+              "nodeType": "StructuredDocumentation",
+              "src": "1410:219:2",
+              "text": " @notice Pipe multiple AdvancedPipeCalls through Pipeline.\n @param pipes list of AdvancedPipeCalls to pipe through Pipeline\n @return results list of return values from each AdvancedPipeCall*"
+            },
+            "functionSelector": "b452c7ae",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "advancedPipe",
+            "parameters": {
+              "id": 1866,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1863,
+                  "mutability": "mutable",
+                  "name": "pipes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1883,
+                  "src": "1656:33:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_AdvancedPipeCall_$2683_calldata_ptr_$dyn_calldata_ptr",
+                    "typeString": "struct AdvancedPipeCall[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1861,
+                      "name": "AdvancedPipeCall",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 2683,
+                      "src": "1656:16:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_AdvancedPipeCall_$2683_storage_ptr",
+                        "typeString": "struct AdvancedPipeCall"
+                      }
+                    },
+                    "id": 1862,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1656:18:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_AdvancedPipeCall_$2683_storage_$dyn_storage_ptr",
+                      "typeString": "struct AdvancedPipeCall[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1865,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1883,
+                  "src": "1691:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1864,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1691:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1655:50:2"
+            },
+            "returnParameters": {
+              "id": 1870,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1869,
+                  "mutability": "mutable",
+                  "name": "results",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1883,
+                  "src": "1756:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "bytes[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1867,
+                      "name": "bytes",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1756:5:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage_ptr",
+                        "typeString": "bytes"
+                      }
+                    },
+                    "id": 1868,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1756:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                      "typeString": "bytes[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1755:24:2"
+            },
+            "scope": 1936,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 1905,
+            "nodeType": "FunctionDefinition",
+            "src": "2132:228:2",
+            "nodes": [],
+            "body": {
+              "id": 1904,
+              "nodeType": "Block",
+              "src": "2262:98:2",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1902,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 1893,
+                      "name": "result",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1891,
+                      "src": "2272:6:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 1900,
+                          "name": "p",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1886,
+                          "src": "2320:1:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                            "typeString": "struct PipeCall calldata"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                            "typeString": "struct PipeCall calldata"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                              "typeString": "struct PipeCall calldata"
+                            }
+                          ],
+                          "expression": {
+                            "arguments": [
+                              {
+                                "id": 1895,
+                                "name": "PIPELINE",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1821,
+                                "src": "2291:8:2",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "id": 1894,
+                              "name": "IPipeline",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2709,
+                              "src": "2281:9:2",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_IPipeline_$2709_$",
+                                "typeString": "type(contract IPipeline)"
+                              }
+                            },
+                            "id": 1896,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "typeConversion",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "2281:19:2",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_IPipeline_$2709",
+                              "typeString": "contract IPipeline"
+                            }
+                          },
+                          "id": 1897,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "pipe",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2690,
+                          "src": "2281:24:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_external_payable$_t_struct$_PipeCall_$2676_memory_ptr_$returns$_t_bytes_memory_ptr_$",
+                            "typeString": "function (struct PipeCall memory) payable external returns (bytes memory)"
+                          }
+                        },
+                        "id": 1899,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "names": [
+                          "value"
+                        ],
+                        "nodeType": "FunctionCallOptions",
+                        "options": [
+                          {
+                            "id": 1898,
+                            "name": "value",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1888,
+                            "src": "2313:5:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          }
+                        ],
+                        "src": "2281:38:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_payable$_t_struct$_PipeCall_$2676_memory_ptr_$returns$_t_bytes_memory_ptr_$value",
+                          "typeString": "function (struct PipeCall memory) payable external returns (bytes memory)"
+                        }
+                      },
+                      "id": 1901,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2281:41:2",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes memory"
+                      }
+                    },
+                    "src": "2272:50:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "id": 1903,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2272:50:2"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1884,
+              "nodeType": "StructuredDocumentation",
+              "src": "1901:226:2",
+              "text": " @notice Pipe a PipeCall through Pipeline with an Ether value.\n @param p PipeCall to pipe through Pipeline\n @param value Ether value to send in Pipecall\n @return result PipeCall return value*"
+            },
+            "functionSelector": "6e47d07b",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "etherPipe",
+            "parameters": {
+              "id": 1889,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1886,
+                  "mutability": "mutable",
+                  "name": "p",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1905,
+                  "src": "2151:19:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                    "typeString": "struct PipeCall"
+                  },
+                  "typeName": {
+                    "id": 1885,
+                    "name": "PipeCall",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 2676,
+                    "src": "2151:8:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PipeCall_$2676_storage_ptr",
+                      "typeString": "struct PipeCall"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1888,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1905,
+                  "src": "2172:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1887,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2172:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2150:36:2"
+            },
+            "returnParameters": {
+              "id": 1892,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1891,
+                  "mutability": "mutable",
+                  "name": "result",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1905,
+                  "src": "2237:19:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 1890,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2237:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2236:21:2"
+            },
+            "scope": 1936,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 1935,
+            "nodeType": "FunctionDefinition",
+            "src": "2555:308:2",
+            "nodes": [],
+            "body": {
+              "id": 1934,
+              "nodeType": "Block",
+              "src": "2666:197:2",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    1914
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1914,
+                      "mutability": "mutable",
+                      "name": "success",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1934,
+                      "src": "2676:12:2",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 1913,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2676:4:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1915,
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2676:12:2"
+                },
+                {
+                  "expression": {
+                    "id": 1925,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "components": [
+                        {
+                          "id": 1916,
+                          "name": "success",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1914,
+                          "src": "2760:7:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        {
+                          "id": 1917,
+                          "name": "result",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1911,
+                          "src": "2769:6:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          }
+                        }
+                      ],
+                      "id": 1918,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "TupleExpression",
+                      "src": "2759:17:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "tuple(bool,bytes memory)"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "expression": {
+                            "id": 1922,
+                            "name": "p",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1908,
+                            "src": "2799:1:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                              "typeString": "struct PipeCall calldata"
+                            }
+                          },
+                          "id": 1923,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "data",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2675,
+                          "src": "2799:6:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes_calldata_ptr",
+                            "typeString": "bytes calldata"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_bytes_calldata_ptr",
+                            "typeString": "bytes calldata"
+                          }
+                        ],
+                        "expression": {
+                          "expression": {
+                            "id": 1919,
+                            "name": "p",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1908,
+                            "src": "2779:1:2",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                              "typeString": "struct PipeCall calldata"
+                            }
+                          },
+                          "id": 1920,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "target",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 2673,
+                          "src": "2779:8:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "id": 1921,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "staticcall",
+                        "nodeType": "MemberAccess",
+                        "src": "2779:19:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_barestaticcall_view$_t_bytes_memory_ptr_$returns$_t_bool_$_t_bytes_memory_ptr_$",
+                          "typeString": "function (bytes memory) view returns (bool,bytes memory)"
+                        }
+                      },
+                      "id": 1924,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2779:27:2",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_tuple$_t_bool_$_t_bytes_memory_ptr_$",
+                        "typeString": "tuple(bool,bytes memory)"
+                      }
+                    },
+                    "src": "2759:47:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1926,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2759:47:2"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 1930,
+                        "name": "success",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1914,
+                        "src": "2840:7:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "id": 1931,
+                        "name": "result",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1911,
+                        "src": "2849:6:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "expression": {
+                        "id": 1927,
+                        "name": "LibFunction",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2915,
+                        "src": "2816:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_LibFunction_$2915_$",
+                          "typeString": "type(library LibFunction)"
+                        }
+                      },
+                      "id": 1929,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "checkReturn",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 2745,
+                      "src": "2816:23:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_bool_$_t_bytes_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,bytes memory) pure"
+                      }
+                    },
+                    "id": 1932,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2816:40:2",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1933,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2816:40:2"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1906,
+              "nodeType": "StructuredDocumentation",
+              "src": "2366:184:2",
+              "text": " @notice Return the return value of a PipeCall without executing it.\n @param p PipeCall to execute with a staticcall\n @return result PipeCall return value*"
+            },
+            "functionSelector": "dd756c4f",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "readPipe",
+            "parameters": {
+              "id": 1909,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1908,
+                  "mutability": "mutable",
+                  "name": "p",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1935,
+                  "src": "2573:19:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_PipeCall_$2676_calldata_ptr",
+                    "typeString": "struct PipeCall"
+                  },
+                  "typeName": {
+                    "id": 1907,
+                    "name": "PipeCall",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 2676,
+                    "src": "2573:8:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PipeCall_$2676_storage_ptr",
+                      "typeString": "struct PipeCall"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2572:21:2"
+            },
+            "returnParameters": {
+              "id": 1912,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1911,
+                  "mutability": "mutable",
+                  "name": "result",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1935,
+                  "src": "2641:19:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 1910,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2641:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2640:21:2"
+            },
+            "scope": 1936,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1818,
+          "nodeType": "StructuredDocumentation",
+          "src": "222:259:2",
+          "text": " @title Depot Facet\n @author Publius\n @notice DepotFacet wraps Pipeline's Pipe functions to facilitate the loading of non-Ether assets in Pipeline\n in the same transaction that loads Ether, Pipes calls to other protocols and unloads Pipeline.*"
+        },
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          1936
+        ],
+        "name": "DepotFacet",
+        "scope": 1937
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 2
+}

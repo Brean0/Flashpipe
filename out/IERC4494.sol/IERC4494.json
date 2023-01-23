@@ -1,0 +1,661 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "nonces",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "sig",
+          "type": "bytes"
+        }
+      ],
+      "name": "permit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "DOMAIN_SEPARATOR()": "3644e515",
+    "nonces(uint256)": "141a468c",
+    "permit(address,uint256,uint256,bytes)": "745a41bc",
+    "supportsInterface(bytes4)": "01ffc9a7"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"nonces\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"sig\",\"type\":\"bytes\"}],\"name\":\"permit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface for token permits for ERC-721\",\"kind\":\"dev\",\"methods\":{\"DOMAIN_SEPARATOR()\":{\"returns\":{\"_0\":\"the bytes32 domain separator\"}},\"nonces(uint256)\":{\"params\":{\"tokenId\":\"the index of the NFT to get the nonce of\"},\"returns\":{\"_0\":\"the uint256 representation of the nonce\"}},\"permit(address,uint256,uint256,bytes)\":{\"params\":{\"deadline\":\"a timestamp expiry for the permit\",\"sig\":\"a traditional or EIP-2098 signature\",\"spender\":\"the address to approve\",\"tokenId\":\"the index of the NFT to approve the spender on\"}},\"supportsInterface(bytes4)\":{\"details\":\"Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"DOMAIN_SEPARATOR()\":{\"notice\":\"Returns the domain separator used in the encoding of the signature for permits, as defined by EIP-712\"},\"nonces(uint256)\":{\"notice\":\"Returns the nonce of an NFT - useful for creating permits\"},\"permit(address,uint256,uint256,bytes)\":{\"notice\":\"Function to approve by way of owner signature\"}},\"notice\":\"Implementation from https://eips.ethereum.org/EIPS/eip-4494\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IERC4494.sol\":\"IERC4494\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":800},\"remappings\":[\":@ensdomains/=node_modules/@ensdomains/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":@prb/test/=lib/prb-math/lib/prb-test/src/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\",\":mocks/=contracts/mocks/\",\":oz/=lib/openzeppelin-contracts/contracts/\",\":ozu/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":prb-math/=lib/prb-math/src/\",\":prb-test/=lib/prb-math/lib/prb-test/src/\",\":src/=lib/prb-math/src/\"]},\"sources\":{\"contracts/interfaces/IERC4494.sol\":{\"keccak256\":\"0x2ea3a0c4984890cd062813e027047f6a54e5a29f93d6ef294758c23100e7885d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d78c6469136c4b9de38ff0638df829a87e40e7358dc25cc79bd2cb5430db6a30\",\"dweb:/ipfs/QmfD2PY6x5u7HtfAhYYBwbZRBj7xDgfw6nk48mMRd4JPvZ\"]},\"node_modules/@openzeppelin/contracts/introspection/IERC165.sol\":{\"keccak256\":\"0xf70bc25d981e4ec9673a995ad2995d5d493ea188d3d8f388bba9c227ce09fb82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bd970f51e3a77790c2f02b5b1759827c3b897c3d98c407b3631e8af32e3dc93c\",\"dweb:/ipfs/QmPF85Amgbqjk3SNZKsPCsqCw8JfwYEPMnnhvMJUyX58je\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.7.6+commit.7338295f"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "DOMAIN_SEPARATOR",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "nonces",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes",
+              "name": "sig",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "permit"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes4",
+              "name": "interfaceId",
+              "type": "bytes4"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "supportsInterface",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "DOMAIN_SEPARATOR()": {
+            "returns": {
+              "_0": "the bytes32 domain separator"
+            }
+          },
+          "nonces(uint256)": {
+            "params": {
+              "tokenId": "the index of the NFT to get the nonce of"
+            },
+            "returns": {
+              "_0": "the uint256 representation of the nonce"
+            }
+          },
+          "permit(address,uint256,uint256,bytes)": {
+            "params": {
+              "deadline": "a timestamp expiry for the permit",
+              "sig": "a traditional or EIP-2098 signature",
+              "spender": "the address to approve",
+              "tokenId": "the index of the NFT to approve the spender on"
+            }
+          },
+          "supportsInterface(bytes4)": {
+            "details": "Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas."
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "DOMAIN_SEPARATOR()": {
+            "notice": "Returns the domain separator used in the encoding of the signature for permits, as defined by EIP-712"
+          },
+          "nonces(uint256)": {
+            "notice": "Returns the nonce of an NFT - useful for creating permits"
+          },
+          "permit(address,uint256,uint256,bytes)": {
+            "notice": "Function to approve by way of owner signature"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@ensdomains/=node_modules/@ensdomains/",
+        ":@openzeppelin/=node_modules/@openzeppelin/",
+        ":@prb/test/=lib/prb-math/lib/prb-test/src/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        ":forge-std/=lib/forge-std/src/",
+        ":hardhat/=node_modules/hardhat/",
+        ":mocks/=contracts/mocks/",
+        ":oz/=lib/openzeppelin-contracts/contracts/",
+        ":ozu/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":prb-math/=lib/prb-math/src/",
+        ":prb-test/=lib/prb-math/lib/prb-test/src/",
+        ":src/=lib/prb-math/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 800
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "contracts/interfaces/IERC4494.sol": "IERC4494"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "contracts/interfaces/IERC4494.sol": {
+        "keccak256": "0x2ea3a0c4984890cd062813e027047f6a54e5a29f93d6ef294758c23100e7885d",
+        "urls": [
+          "bzz-raw://d78c6469136c4b9de38ff0638df829a87e40e7358dc25cc79bd2cb5430db6a30",
+          "dweb:/ipfs/QmfD2PY6x5u7HtfAhYYBwbZRBj7xDgfw6nk48mMRd4JPvZ"
+        ],
+        "license": "MIT"
+      },
+      "node_modules/@openzeppelin/contracts/introspection/IERC165.sol": {
+        "keccak256": "0xf70bc25d981e4ec9673a995ad2995d5d493ea188d3d8f388bba9c227ce09fb82",
+        "urls": [
+          "bzz-raw://bd970f51e3a77790c2f02b5b1759827c3b897c3d98c407b3631e8af32e3dc93c",
+          "dweb:/ipfs/QmPF85Amgbqjk3SNZKsPCsqCw8JfwYEPMnnhvMJUyX58je"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "contracts/interfaces/IERC4494.sol",
+    "id": 2669,
+    "exportedSymbols": {
+      "IERC165": [
+        28861
+      ],
+      "IERC4494": [
+        2668
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:1242:6",
+    "nodes": [
+      {
+        "id": 2636,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:6",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".6"
+        ]
+      },
+      {
+        "id": 2637,
+        "nodeType": "PragmaDirective",
+        "src": "57:33:6",
+        "nodes": [],
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ]
+      },
+      {
+        "id": 2638,
+        "nodeType": "ImportDirective",
+        "src": "92:59:6",
+        "nodes": [],
+        "absolutePath": "node_modules/@openzeppelin/contracts/introspection/IERC165.sol",
+        "file": "@openzeppelin/contracts/introspection/IERC165.sol",
+        "scope": 2669,
+        "sourceUnit": 28862,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 2668,
+        "nodeType": "ContractDefinition",
+        "src": "270:1005:6",
+        "nodes": [
+          {
+            "id": 2653,
+            "nodeType": "FunctionDefinition",
+            "src": "702:95:6",
+            "nodes": [],
+            "documentation": {
+              "id": 2642,
+              "nodeType": "StructuredDocumentation",
+              "src": "421:278:6",
+              "text": "@notice Function to approve by way of owner signature\n @param spender the address to approve\n @param tokenId the index of the NFT to approve the spender on\n @param deadline a timestamp expiry for the permit\n @param sig a traditional or EIP-2098 signature"
+            },
+            "functionSelector": "745a41bc",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "permit",
+            "parameters": {
+              "id": 2651,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2644,
+                  "mutability": "mutable",
+                  "name": "spender",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2653,
+                  "src": "718:15:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2643,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "718:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2646,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2653,
+                  "src": "735:15:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2645,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "735:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2648,
+                  "mutability": "mutable",
+                  "name": "deadline",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2653,
+                  "src": "752:16:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2647,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "752:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2650,
+                  "mutability": "mutable",
+                  "name": "sig",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2653,
+                  "src": "770:16:6",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 2649,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "770:5:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "717:70:6"
+            },
+            "returnParameters": {
+              "id": 2652,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "796:0:6"
+            },
+            "scope": 2668,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 2661,
+            "nodeType": "FunctionDefinition",
+            "src": "988:64:6",
+            "nodes": [],
+            "documentation": {
+              "id": 2654,
+              "nodeType": "StructuredDocumentation",
+              "src": "800:185:6",
+              "text": "@notice Returns the nonce of an NFT - useful for creating permits\n @param tokenId the index of the NFT to get the nonce of\n @return the uint256 representation of the nonce"
+            },
+            "functionSelector": "141a468c",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "nonces",
+            "parameters": {
+              "id": 2657,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2656,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2661,
+                  "src": "1004:15:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2655,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1004:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1003:17:6"
+            },
+            "returnParameters": {
+              "id": 2660,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2659,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2661,
+                  "src": "1043:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2658,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1043:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1042:9:6"
+            },
+            "scope": 2668,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 2667,
+            "nodeType": "FunctionDefinition",
+            "src": "1214:59:6",
+            "nodes": [],
+            "documentation": {
+              "id": 2662,
+              "nodeType": "StructuredDocumentation",
+              "src": "1055:156:6",
+              "text": "@notice Returns the domain separator used in the encoding of the signature for permits, as defined by EIP-712\n @return the bytes32 domain separator"
+            },
+            "functionSelector": "3644e515",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "DOMAIN_SEPARATOR",
+            "parameters": {
+              "id": 2663,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1239:2:6"
+            },
+            "returnParameters": {
+              "id": 2666,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2665,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2667,
+                  "src": "1264:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 2664,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1264:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1263:9:6"
+            },
+            "scope": 2668,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 2640,
+              "name": "IERC165",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 28861,
+              "src": "292:7:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IERC165_$28861",
+                "typeString": "contract IERC165"
+              }
+            },
+            "id": 2641,
+            "nodeType": "InheritanceSpecifier",
+            "src": "292:7:6"
+          }
+        ],
+        "contractDependencies": [
+          28861
+        ],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 2639,
+          "nodeType": "StructuredDocumentation",
+          "src": "153:117:6",
+          "text": "Implementation from https://eips.ethereum.org/EIPS/eip-4494\n @dev Interface for token permits for ERC-721"
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          2668,
+          28861
+        ],
+        "name": "IERC4494",
+        "scope": 2669
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 6
+}

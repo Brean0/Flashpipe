@@ -2,12 +2,13 @@
  SPDX-License-Identifier: MIT
 */
 
-pragma solidity =0.7.6;
+pragma solidity ^0.7.6;
 pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
 import {ERC20Permit} from "../tokens/ERC20Permit.sol";
+
 
 /**
  * @author Publius
@@ -42,5 +43,4 @@ contract MockToken is ERC20, ERC20Burnable, ERC20Permit {
     function decimals() public view virtual override returns (uint8) {
         return _decimals;
     }
-
 }
