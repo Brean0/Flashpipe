@@ -12,9 +12,9 @@ import "./facets/TokenSupportFacet.sol";
 import "./interfaces/IBeanstalk.sol";
 import "./interfaces/IERC4494.sol";
 import "./libraries/LibFunction.sol";
+import "./libraries/LibFlashLoan.sol";
 import "@balancer-labs/v2-interfaces/contracts/vault/IVault.sol";
 import "@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol";
-
 
 /**
  * @title Depot
@@ -25,7 +25,7 @@ import "@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol";
  * https://evmpipeline.org
 **/
 
-contract Depot is DepotFacet, TokenSupportFacet, {
+contract Depot is DepotFacet, TokenSupportFacet {
 
     using SafeERC20 for IERC20;
     
@@ -187,5 +187,8 @@ contract Depot is DepotFacet, TokenSupportFacet, {
         bytes memory userData
     ) external override {
         require(msg.sender == vault);
+        bytes[] data = new bytes[](1);
+        data[0] = userData;
+        farm(data);
     }
 }
