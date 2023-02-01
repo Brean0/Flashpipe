@@ -13,8 +13,8 @@
   },
   "files": {
     "contracts/Depot.sol": {
-      "lastModificationDate": 1674257905324,
-      "contentHash": "02b3852ef27644bca4ef1abc608a6446",
+      "lastModificationDate": 1675216125361,
+      "contentHash": "e180066d2234a9ef7d4e1e961213c580",
       "sourceName": "contracts/Depot.sol",
       "solcConfig": {
         "settings": {
@@ -64,6 +64,78 @@
       "artifacts": {
         "Depot": {
           "0.7.6+commit.7338295f.Darwin.appleclang": "Depot.sol/Depot.json"
+        }
+      }
+    },
+    "contracts/FlashDepot.sol": {
+      "lastModificationDate": 1675216840601,
+      "contentHash": "44d6cf03fdabbb21a6d55983ec2076fa",
+      "sourceName": "contracts/FlashDepot.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/facets/DepotFacet.sol",
+        "contracts/facets/TokenSupportFacet.sol",
+        "contracts/interfaces/IBeanstalk.sol",
+        "contracts/interfaces/IERC4494.sol",
+        "contracts/interfaces/IFlashLoanRecipient.sol",
+        "contracts/interfaces/IPipeline.sol",
+        "contracts/interfaces/IVault.sol",
+        "contracts/interfaces/IWETH.sol",
+        "contracts/interfaces/helpers/IAuthentication.sol",
+        "contracts/interfaces/helpers/ISignaturesValidator.sol",
+        "contracts/interfaces/helpers/ITemporarilyPausable.sol",
+        "contracts/libraries/LibFlashLoan.sol",
+        "contracts/libraries/LibFunction.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/IAuthentication.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ISignaturesValidator.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ITemporarilyPausable.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/misc/IWETH.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAsset.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAuthorizer.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IProtocolFeesCollector.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IVault.sol",
+        "node_modules/@openzeppelin/contracts/drafts/IERC20Permit.sol",
+        "node_modules/@openzeppelin/contracts/introspection/IERC165.sol",
+        "node_modules/@openzeppelin/contracts/math/SafeMath.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC20/SafeERC20.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "node_modules/@openzeppelin/contracts/utils/Address.sol"
+      ],
+      "versionRequirement": "^0.7.6",
+      "artifacts": {
+        "Depot": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "FlashDepot.sol/Depot.json"
         }
       }
     },
@@ -427,6 +499,48 @@
         }
       }
     },
+    "contracts/interfaces/IFlashLoanRecipient.sol": {
+      "lastModificationDate": 1675216098966,
+      "contentHash": "e9f621b345845de221824139f6347dcb",
+      "sourceName": "contracts/interfaces/IFlashLoanRecipient.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IFlashLoanRecipient": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IFlashLoanRecipient.sol/IFlashLoanRecipient.json"
+        }
+      }
+    },
     "contracts/interfaces/IPipeline.sol": {
       "lastModificationDate": 1674257905325,
       "contentHash": "ba7c315a355af081cbe1977909c1c4db",
@@ -464,6 +578,343 @@
       "artifacts": {
         "IPipeline": {
           "0.7.6+commit.7338295f.Darwin.appleclang": "IPipeline.sol/IPipeline.json"
+        }
+      }
+    },
+    "contracts/interfaces/ISwapRouter.sol": {
+      "lastModificationDate": 1674495514528,
+      "contentHash": "51b91aab92949449d0cad26c5e6b34de",
+      "sourceName": "contracts/interfaces/ISwapRouter.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.5",
+      "artifacts": {
+        "ISwapRouter": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "ISwapRouter.sol/ISwapRouter.json"
+        }
+      }
+    },
+    "contracts/interfaces/IVault.sol": {
+      "lastModificationDate": 1675216662687,
+      "contentHash": "3c60a950d76c0540ce4cf9a10af2686c",
+      "sourceName": "contracts/interfaces/IVault.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/interfaces/IFlashLoanRecipient.sol",
+        "contracts/interfaces/IWETH.sol",
+        "contracts/interfaces/helpers/IAuthentication.sol",
+        "contracts/interfaces/helpers/ISignaturesValidator.sol",
+        "contracts/interfaces/helpers/ITemporarilyPausable.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/IAuthentication.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ISignaturesValidator.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ITemporarilyPausable.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/misc/IWETH.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAsset.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAuthorizer.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IProtocolFeesCollector.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IVault.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IVault": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IVault.sol/IVault.json"
+        }
+      }
+    },
+    "contracts/interfaces/IWETH.sol": {
+      "lastModificationDate": 1674492468332,
+      "contentHash": "44ce7026ece8ae7061ce8bd9c245bb3d",
+      "sourceName": "contracts/interfaces/IWETH.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.5.0",
+      "artifacts": {
+        "IWETH": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IWETH.sol/IWETH.json"
+        }
+      }
+    },
+    "contracts/interfaces/helpers/BalancerErrors.sol": {
+      "lastModificationDate": 1675215832907,
+      "contentHash": "5349bc9b56cfd8673e6849202fb373c3",
+      "sourceName": "contracts/interfaces/helpers/BalancerErrors.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "Errors": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "BalancerErrors.sol/Errors.json"
+        }
+      }
+    },
+    "contracts/interfaces/helpers/IAuthentication.sol": {
+      "lastModificationDate": 1675215832907,
+      "contentHash": "63f8c7b7a4ac329c8104063a025a991b",
+      "sourceName": "contracts/interfaces/helpers/IAuthentication.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IAuthentication": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IAuthentication.sol/IAuthentication.json"
+        }
+      }
+    },
+    "contracts/interfaces/helpers/IOptionalOnlyCaller.sol": {
+      "lastModificationDate": 1675215832908,
+      "contentHash": "1388da9017739025a8202c1931c8807e",
+      "sourceName": "contracts/interfaces/helpers/IOptionalOnlyCaller.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IOptionalOnlyCaller": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IOptionalOnlyCaller.sol/IOptionalOnlyCaller.json"
+        }
+      }
+    },
+    "contracts/interfaces/helpers/ISignaturesValidator.sol": {
+      "lastModificationDate": 1675215832908,
+      "contentHash": "48de5f36515898c9e9ddcd00f651ef86",
+      "sourceName": "contracts/interfaces/helpers/ISignaturesValidator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "ISignaturesValidator": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "ISignaturesValidator.sol/ISignaturesValidator.json"
+        }
+      }
+    },
+    "contracts/interfaces/helpers/ITemporarilyPausable.sol": {
+      "lastModificationDate": 1675215832909,
+      "contentHash": "5a94e6420fe95c3e0fa16e78fb8f74c3",
+      "sourceName": "contracts/interfaces/helpers/ITemporarilyPausable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "ITemporarilyPausable": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "ITemporarilyPausable.sol/ITemporarilyPausable.json"
         }
       }
     },
@@ -550,6 +1001,49 @@
         },
         "UnwrapAndSendETH": {
           "0.8.17+commit.8df45f5f.Darwin.appleclang": "UnwrapAndSendETH.sol/UnwrapAndSendETH.json"
+        }
+      }
+    },
+    "contracts/libraries/LibFlashLoan.sol": {
+      "lastModificationDate": 1675214061477,
+      "contentHash": "494b021296264b921b9b4c09434319ae",
+      "sourceName": "contracts/libraries/LibFlashLoan.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/interfaces/IPipeline.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.7.6, <0.9.0",
+      "artifacts": {
+        "LibFlashLoan": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "LibFlashLoan.sol/LibFlashLoan.json"
         }
       }
     },
@@ -1532,6 +2026,432 @@
       "artifacts": {
         "console2": {
           "0.7.6+commit.7338295f.Darwin.appleclang": "console2.sol/console2.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/IAuthentication.sol": {
+      "lastModificationDate": 1674687151886,
+      "contentHash": "63f8c7b7a4ac329c8104063a025a991b",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/IAuthentication.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IAuthentication": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "helpers/IAuthentication.sol/IAuthentication.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ISignaturesValidator.sol": {
+      "lastModificationDate": 1674687151887,
+      "contentHash": "48de5f36515898c9e9ddcd00f651ef86",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ISignaturesValidator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "ISignaturesValidator": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "helpers/ISignaturesValidator.sol/ISignaturesValidator.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ITemporarilyPausable.sol": {
+      "lastModificationDate": 1674687151887,
+      "contentHash": "5a94e6420fe95c3e0fa16e78fb8f74c3",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ITemporarilyPausable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "ITemporarilyPausable": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "helpers/ITemporarilyPausable.sol/ITemporarilyPausable.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/misc/IWETH.sol": {
+      "lastModificationDate": 1674687151887,
+      "contentHash": "8347e7eef0bb47de8851ecbcf8eb590c",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/misc/IWETH.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IWETH": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "misc/IWETH.sol/IWETH.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol": {
+      "lastModificationDate": 1674687151887,
+      "contentHash": "028dddcf9b178b241401b1ae8126c903",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IERC20": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IERC20.sol/IERC20.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAsset.sol": {
+      "lastModificationDate": 1674687151889,
+      "contentHash": "20c61578e7416055512409a25576fb1a",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAsset.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IAsset": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IAsset.sol/IAsset.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAuthorizer.sol": {
+      "lastModificationDate": 1674687151889,
+      "contentHash": "03599610995051c98edd4f72102136b2",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAuthorizer.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IAuthorizer": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IAuthorizer.sol/IAuthorizer.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol": {
+      "lastModificationDate": 1675213760533,
+      "contentHash": "31e2c769fc0ac25db2d9b46225793f01",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IFlashLoanRecipient": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "vault/IFlashLoanRecipient.sol/IFlashLoanRecipient.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IProtocolFeesCollector.sol": {
+      "lastModificationDate": 1674687151891,
+      "contentHash": "26a23f2667431cfc1ea8aa5e69edef63",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IProtocolFeesCollector.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/IAuthentication.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ISignaturesValidator.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ITemporarilyPausable.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/misc/IWETH.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAsset.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAuthorizer.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IProtocolFeesCollector.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IVault.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IProtocolFeesCollector": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "IProtocolFeesCollector.sol/IProtocolFeesCollector.json"
+        }
+      }
+    },
+    "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IVault.sol": {
+      "lastModificationDate": 1675215815841,
+      "contentHash": "79bd5631447ef53e3ddfd61be8efedb7",
+      "sourceName": "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IVault.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/IAuthentication.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ISignaturesValidator.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/helpers/ITemporarilyPausable.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/misc/IWETH.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/solidity-utils/openzeppelin/IERC20.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAsset.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IAuthorizer.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IFlashLoanRecipient.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IProtocolFeesCollector.sol",
+        "node_modules/@balancer-labs/v2-interfaces/contracts/vault/IVault.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IVault": {
+          "0.7.6+commit.7338295f.Darwin.appleclang": "vault/IVault.sol/IVault.json"
         }
       }
     },
@@ -2761,8 +3681,8 @@
       }
     },
     "test/foundry/Pipeline.t.sol": {
-      "lastModificationDate": 1674492418415,
-      "contentHash": "d4386ec52a3ba801161d68a52be12920",
+      "lastModificationDate": 1675215244941,
+      "contentHash": "9e2d48401e7892c8a37eb88dccb789fc",
       "sourceName": "test/foundry/Pipeline.t.sol",
       "solcConfig": {
         "settings": {
