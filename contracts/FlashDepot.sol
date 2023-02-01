@@ -3,19 +3,19 @@
 pragma solidity ^0.7.6;
 pragma experimental ABIEncoderV2;
 
-import {IVault} from "./interfaces/IVault.sol";
-import {IFlashLoanRecipient} from "./interfaces/IFlashLoanRecipient.sol";
-import {IERC20Permit} from "@openzeppelin/contracts/drafts/IERC20Permit.sol";
-import {IERC1155} from "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
-import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import {IBeanstalk, To, From} from "./interfaces/IBeanstalk.sol";
 import {DepotFacet} from "./facets/DepotFacet.sol";
 import {TokenSupportFacet} from "./facets/TokenSupportFacet.sol";
-import {IBeanstalk, To, From} from "./interfaces/IBeanstalk.sol";
-import {IERC4494} from "./interfaces/IERC4494.sol";
 import {LibFunction} from "./libraries/LibFunction.sol";
 import {LibFlashLoan} from "./libraries/LibFlashLoan.sol";
+import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import {IERC20Permit} from "@openzeppelin/contracts/drafts/IERC20Permit.sol";
+import {IERC1155} from "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
+import {IERC4494} from "./interfaces/IERC4494.sol";
+import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {IFlashLoanRecipient} from "./interfaces/IFlashLoanRecipient.sol";
+import {IVault} from "./interfaces/IVault.sol";
 
 
 
@@ -225,9 +225,50 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
     ) public {
 
     }
+    // FIXME: needs rigorus testing
+    /// @dev used to convert farm bytes[] array into a single bytes, formmatted as such:
+    // [1 bytes     |1 bytes           | X bytes  | 1 bytes         | X bytes           ]
+    // [data.length | data[0].length   | data[0]  | bytes[n].length | farmDataBytes[n]  ]
+    
+    // should be used externally to prepare data
+    function convertByteArrayBetter(bytes[] memory data) public pure returns (bytes memory) {
+        uint256 totalLength = 1;
+        for(uint i; i < data.length; ++i){
+            totalLength += data[i].length + 1;
+        }
+        bytes memory _data = new bytes(totalLength);
+        _data = LibFunction.paste32Bytes(abi.encodePacked(data.length),_data,63,32);
+        uint256 prevLength = 1;
+        for(uint i; i < data.length; ++i){
+            if(data[i].length <= 31){
+                _data = LibFunction.paste32Bytes(data[i],_data,31,32 + prevLength);
+                prevLength = prevLength + data[i].length + 1;
+            } else {
+                uint256 loops = ((data[i].length) / 32) + 1;
+                uint256 mod = (data[i].length + 1) % 32;
+                _data = LibFunction.paste32Bytes(data[i],_data,31,32 + prevLength);
+                prevLength = prevLength + 32;
+                for(uint j = 1; j < loops - 1 ; ++j){
+                    _data = LibFunction.paste32Bytes(data[i],_data,31 + 32*j,32 + prevLength);
+                    prevLength = prevLength + 32;
+                }
+                _data = LibFunction.paste32Bytes(data[i],_data,31 + 32*j,32 + prevLength);
+                prevLength = prevLength + mod;
+            }
+           
+        }
+        return _data;
+    }
 
-    function convertBytesIntoBytesArray(bytes memory data) 
-        public 
-        view 
-        returns(bytes[] memory Newdata){}
+    // converts bytes into bytes[]
+    function convertBytes(bytes memory data) internal returns (bytes[] memory){
+        // create bytes array
+        bytes[] memory returnData = new bytes[10];
+        // check first byte
+        
+        // use that to determine length of data
+        // append that data to returnData
+        // return bytes
+
+    }
 }
