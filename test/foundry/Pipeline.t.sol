@@ -8,13 +8,15 @@ import {Depot} from "contracts/Depot.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "contracts/interfaces/IPipeline.sol";
 import "contracts/interfaces/IBeanstalk.sol";
-import "contracts/Staking.sol";
+import {OlympusStaking} from "contracts/Staking.sol";
 
-import "./TestHelper.sol";
+import {TestHelper} from "./TestHelper.sol";
 
 contract PipelineTest is TestHelper {
     Depot depot;
     address constant OLYMPUS_STAKING = 0xB63cac384247597756545b500253ff8E607a8020;
+    address constant PIPELINE = 0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa;
+    address constant FIXEDTERMBOND = 0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6;
 
     function setUp() public {
         deployMockTokens(5);
@@ -127,8 +129,9 @@ contract PipelineTest is TestHelper {
 
     }
 
+    // function TestAdvancedPipe() prank(user) public {
 
-    function testOlympus() prank(user) public {
 
-    }
+
+    // }
 }
