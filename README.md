@@ -1,4 +1,4 @@
-<img src="https://github.com/Brean0/Flashpipe/assets/flashPipeline.svg" alt="FlashPipeline logo" align="right" width="120" />
+<img src="./assets/flashPipeline.svg" alt="FlashPipeline logo" align="right" width="120" />
 
 # FlashPipe (WIP)
 
