@@ -1,4 +1,4 @@
-<img src="https://github.com/Brean0/Flashpipe/blob/master/assets/flashPipeline.svg" alt="FlashPipeline logo" align="right" width="120" />
+<img src="https://github.com/Brean0/Flashpipe/assets/flashPipeline.svg" alt="FlashPipeline logo" align="right" width="120" />
 
 # FlashPipe (WIP)
 
@@ -7,17 +7,17 @@ Perform an arbitrary series of actions in the EVM in a single transaction: [evmp
 Code Version: `1.0.0` <br>
 Whitepaper Version: `1.0.1`
 
-**Pipeline** is a standalone contract that creates a sandbox to execute an arbitrary composition of valid
-actions within the EVM in a single transaction using Ether. 
+**Flashpipe** is a wrapper for Depot that enables flash loan capabilities.
+
+**Flash Loans** are uncollateralized loans that allow users to borrow funds, provided that 
+the assets are returned within the same transaction.
 
 **Depot** is a wrapper for Pipeline that
 supports (1) loading Ether and non-Ether assets into Pipeline, (2) using them and (3) unloading
 them from Pipeline, in a single transaction. 
 
-**Flash Loans** are uncollateralized loans that allow users to borrow funds, provided that 
-the assets are returned within the same transaction.
-
-**Flashpipe** is a wrapper for Depot that enables flash loan capabilities.
+**Pipeline** is a standalone contract that creates a sandbox to execute an arbitrary composition of valid
+actions within the EVM in a single transaction using Ether. 
 
 Current implementation uses [balancer Flash Loans](https://dev.balancer.fi/resources/flash-loans) as they charge no fees.
 However, flashpipe can be easily forked to use other flash-loan protocols.
