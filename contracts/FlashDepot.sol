@@ -226,12 +226,13 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
 
     }
     // FIXME: needs rigorus testing
+    // may also be much easier via calldata
     /// @dev used to convert farm bytes[] array into a single bytes, formmatted as such:
     // [1 bytes     |1 bytes           | X bytes  | 1 bytes         | X bytes           ]
     // [data.length | data[0].length   | data[0]  | bytes[n].length | farmDataBytes[n]  ]
     
     // should be used externally to prepare data
-    function convertByteArrayBetter(bytes[] memory data) public pure returns (bytes memory) {
+    function convertByteArrayToBytes(bytes[] memory data) public pure returns (bytes memory) {
         uint256 totalLength = 1;
         for(uint i; i < data.length; ++i){
             totalLength += data[i].length + 1;
@@ -255,9 +256,26 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
                 _data = LibFunction.paste32Bytes(data[i],_data,31 + 32*j,32 + prevLength);
                 prevLength = prevLength + mod;
             }
-           
         }
-        return _data;
+         return _data;
+    }
+
+    function convertBytesToArray(bytes calldata data) public pure returns(bytes[] memory) {
+        // get first byte 
+        bytes1 length = data[0];
+        // use that to determine length of data
+        bytes[] memory returnData = new bytes[](uint8(length));
+
+        // get next byte representing length of data: 
+        bytes1 dataLength;
+        uint256 startIndex = 1;
+        // uint256 endIndex;
+        for(uint i; i < returnData.length; i++){
+            startIndex = startIndex + uint8(dataLength) + 1; // 1 + 1 = 2 // 2 + 2 + 1 = 5
+            dataLength = data[startIndex - 1]; //data[1] = 0x2 // 5 -1 = 4
+            returnData[i] = data[startIndex : startIndex + uint8(dataLength)];  
+        }
+        return returnData;
     }
 
     // converts bytes into bytes[]
