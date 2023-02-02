@@ -24,7 +24,7 @@ import {IVault} from "./interfaces/IVault.sol";
  * @author Publius, Brean
  * @notice Depot wraps Pipeline's Pipe functions to facilitate the loading of non-Ether assets in Pipeline
  * in the same transaction that loads Ether, Pipes calls to other protocols and unloads Pipeline.
- * Added balancer flash-loan functionality 
+ * @notice flashDepot is a fork of Depot that allows users to ultilize flash loans.
  * https://evmpipeline.org
 **/
 
@@ -182,22 +182,7 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         beanstalk.permitDeposits(owner, spender, tokens, values, deadline, v, r, s);
     }
 
-    function receiveFlashLoan(
-        IERC20[] memory tokens,
-        uint256[] memory amounts,
-        uint256[] memory,
-        bytes memory userData
-    ) external override {
-        require(msg.sender == vault);
-        // convert userData back into bytes
 
-        bytes[] memory data = new bytes[](1);
-        data[0] = userData;
-        this.farm(data);
-        for(uint i; i < tokens.length; ++i ){
-            tokens[i].transfer(vault, amounts[i]);
-        }
-    }
 
     
     // flash pipe embeds a flash loan call to balancer.
@@ -206,31 +191,31 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
     function flashPipe(
         IERC20[] memory tokens,
         uint256[] memory amounts,
-        bytes[] calldata data
+        bytes memory data
     ) external {
-        // convert data[] into data 
-        bytes memory _data = new bytes(32);
-        _data = data[0];
-        IVault(vault).flashLoan(IFlashLoanRecipient(this), tokens, amounts, _data);
+        IVault(vault).flashLoan(IFlashLoanRecipient(this), tokens, amounts, data);
     }
 
-    function flashMultiPipe(
-
-    ) public {
-
+    function receiveFlashLoan(
+        IERC20[] memory tokens,
+        uint256[] memory amounts,
+        uint256[] memory,
+        bytes memory userData
+    ) external override {
+        require(msg.sender == vault);
+        // call farm with data
+        this.farm(this.convertBytesToArray(userData));
+        // transfer tokens back
+        for(uint i; i < tokens.length; ++i ){
+            tokens[i].transfer(vault, amounts[i]);
+        }
     }
 
-    function flashAdvancedPipe(
-
-    ) public {
-
-    }
     // FIXME: needs rigorus testing
     // may also be much easier via calldata
     /// @dev used to convert farm bytes[] array into a single bytes, formmatted as such:
     // [1 bytes     |1 bytes           | X bytes  | 1 bytes         | X bytes           ]
     // [data.length | data[0].length   | data[0]  | bytes[n].length | farmDataBytes[n]  ]
-    
     // should be used externally to prepare data
     function convertByteArrayToBytes(bytes[] memory data) public pure returns (bytes memory) {
         uint256 totalLength = 1;
@@ -249,7 +234,8 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
                 uint256 mod = (data[i].length + 1) % 32;
                 _data = LibFunction.paste32Bytes(data[i],_data,31,32 + prevLength);
                 prevLength = prevLength + 32;
-                for(uint j = 1; j < loops - 1 ; ++j){
+                uint j = 1;
+                for(j ;j < loops - 1 ; ++j){
                     _data = LibFunction.paste32Bytes(data[i],_data,31 + 32*j,32 + prevLength);
                     prevLength = prevLength + 32;
                 }
@@ -260,7 +246,8 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
          return _data;
     }
 
-    function convertBytesToArray(bytes calldata data) public pure returns(bytes[] memory) {
+    // converts a bytes into a bytes memory, based on the format from `convertByteArrayToBytes`
+    function convertBytesToArray(bytes calldata data) external pure returns(bytes[] memory) {
         // get first byte 
         bytes1 length = data[0];
         // use that to determine length of data
@@ -271,22 +258,10 @@ contract Depot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         uint256 startIndex = 1;
         // uint256 endIndex;
         for(uint i; i < returnData.length; i++){
-            startIndex = startIndex + uint8(dataLength) + 1; // 1 + 1 = 2 // 2 + 2 + 1 = 5
-            dataLength = data[startIndex - 1]; //data[1] = 0x2 // 5 -1 = 4
+            startIndex = startIndex + uint8(dataLength) + 1;
+            dataLength = data[startIndex - 1];
             returnData[i] = data[startIndex : startIndex + uint8(dataLength)];  
         }
         return returnData;
-    }
-
-    // converts bytes into bytes[]
-    function convertBytes(bytes memory data) internal returns (bytes[] memory){
-        // create bytes array
-        bytes[] memory returnData = new bytes[10];
-        // check first byte
-        
-        // use that to determine length of data
-        // append that data to returnData
-        // return bytes
-
     }
 }
