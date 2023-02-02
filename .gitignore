@@ -10,3 +10,5 @@ out/
 cache
 artifacts
 
+
+forge-cache/solidity-files-cache.json

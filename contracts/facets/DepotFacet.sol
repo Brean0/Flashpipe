@@ -17,7 +17,7 @@ import "../libraries/LibFunction.sol";
  **/
 
 contract DepotFacet {
-    address private constant PIPELINE =
+    address public constant PIPELINE =
         0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa; // TO DO: Update with final address.
 
     /**

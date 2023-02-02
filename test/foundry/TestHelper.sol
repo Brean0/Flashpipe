@@ -9,6 +9,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import {MockToken} from "contracts/mock/MockToken.sol";
 import {Users} from "utils/Users.sol";
+import {Pipeline} from "contracts/Pipeline.sol";
 
 abstract contract TestHelper is Test {
     using Strings for uint;
@@ -20,12 +21,17 @@ abstract contract TestHelper is Test {
     IERC20[] tokens; // Mock token addresses sorted lexicographically
 
 
-    function initUsers(uint n) internal {
+    function initUsers() internal {
         users = new Users();
         address[] memory _user = new address[](2);
         _user = users.createUsers(2);
         user = _user[0];
         user2 = _user[1];
+    }
+
+    function initPipeline() internal {
+        Pipeline _pipeline = new Pipeline();
+        vm.etch(0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa, at(address(_pipeline)));
     }
 
 
@@ -78,5 +84,22 @@ abstract contract TestHelper is Test {
         vm.startPrank(from);
         _;
         vm.stopPrank();
+    }
+
+    //gets bytecode at specific address (cant use address.code as we're in 0.7.6)
+    function at(address _addr) public view returns (bytes memory o_code) {
+        assembly {
+            // retrieve the size of the code
+            let size := extcodesize(_addr)
+            // allocate output byte array
+            // by using o_code = new bytes(size)
+            o_code := mload(0x40)
+            // new "memory end" including padding
+            mstore(0x40, add(o_code, and(add(add(size, 0x20), 0x1f), not(0x1f))))
+            // store length in memory
+            mstore(o_code, size)
+            // actually retrieve the code, this needs assembly
+            extcodecopy(_addr, add(o_code, 0x20), 0, size)
+        }
     }
 }
