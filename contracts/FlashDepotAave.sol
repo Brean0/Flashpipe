@@ -36,10 +36,10 @@ contract FlashDepotAave is IFlashLoanReceiver, DepotFacet, TokenSupportFacet {
     
     IBeanstalk private constant beanstalk =
         IBeanstalk(0xC1E088fC1323b20BCBee9bd1B9fC9546db5624C5);
-    IPool public constant POOL = 
+    IPool public constant override POOL = 
         IPool(0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9);
 
-    IPoolAddressesProvider public constant ADDRESSES_PROVIDER = 
+    IPoolAddressesProvider public constant override ADDRESSES_PROVIDER = 
         IPoolAddressesProvider(0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5);
     
 
@@ -332,9 +332,4 @@ contract FlashDepotAave is IFlashLoanReceiver, DepotFacet, TokenSupportFacet {
             pasteIndex
         );
     }
-
-    function ADDRESSES_PROVIDER() external pure override returns (IPoolAddressesProvider){
-        return IPoolAddressesProvider(addressProvider);
-    }
-
 }

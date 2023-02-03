@@ -11,7 +11,7 @@ import {LibFlashLoan} from "libraries/LibFlashLoan.sol";
 import {IVault, IAsset} from "contracts/interfaces/IVault.sol";
 import "contracts/interfaces/IPipeline.sol";
 import "contracts/interfaces/IBeanstalk.sol";
-
+import {IBondTeller} from "contracts/interfaces/IBondTeller.sol";
 import "./TestHelper.sol";
 
 contract FlashDepotTest is TestHelper {
@@ -134,9 +134,9 @@ contract FlashDepotTest is TestHelper {
             false,
             0,
             LibFlashLoan.Type.singlePaste,
-            2, // we want the returnData from the 2nd call
+            2, // we want the returnData from the 3rd call
             0, // the first output (meaning the 32 bytes starting from the 0th byte)
-            1 // to the 2nd input (we want to start at 32)
+            1 // to the 2nd input
         );
         _advancedPipeCall[3].target = address(mockContract);
         _advancedPipeCall[3].callData = data;
@@ -319,17 +319,20 @@ contract FlashDepotTest is TestHelper {
 
     }
 
-    function testAave() prank(user) public {
+    function testAaveOHM() prank(user) public {
         // flash loan DAI from aave
         // swaps DAI for OHM
+        // redeems OHM for DAI in RBS
     
         address OHM = 0x64aa3364F17a4D01c6f1751Fd97C2BD3D7e7f1D5;
         address DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
         IVault vault = IVault(0xBA12222222228d8Ba445958a75a0704d566BF2C8);
-        address pool = 0x398eC7346DcD622eDc5ae82352F02bE94C62d119;
-        deal(address(DAI), address(PIPELINE), 10001e18);
+        IBondTeller bondTeller = IBondTeller(0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6);
+        
+        deal(address(DAI), address(PIPELINE), 100e18);
         address[] memory tokens = new address[](1);
         uint256[] memory amounts = new uint256[](1);
+        bytes memory clipData;
         tokens[0] = DAI;
         amounts[0] = 1000e18;
 
@@ -345,13 +348,13 @@ contract FlashDepotTest is TestHelper {
         IVault.FundManagement memory fund = IVault.FundManagement(
             PIPELINE,
             false,
-            payable(user),
+            payable(PIPELINE),
             false
         );
 
         bytes[] memory _farmCalls = new bytes[](1);
 
-        PipeCall[] memory _pipeCall = new PipeCall[](3);
+        AdvancedPipeCall[] memory _pipeCall = new AdvancedPipeCall[](7);
 
         bytes memory pipeData = abi.encodeWithSelector(
             IERC20.approve.selector, 
@@ -359,7 +362,8 @@ contract FlashDepotTest is TestHelper {
             amounts[0]
         );
         _pipeCall[0].target = address(tokens[0]);
-        _pipeCall[0].data = pipeData;
+        _pipeCall[0].callData = pipeData;
+        _pipeCall[0].clipboard = abi.encode(uint256(0));
 
         pipeData = abi.encodeWithSelector(
             IVault.swap.selector, 
@@ -369,19 +373,87 @@ contract FlashDepotTest is TestHelper {
             block.timestamp + 500e18
         );
         _pipeCall[1].target = address(vault);
-        _pipeCall[1].data = pipeData;
+        _pipeCall[1].callData = pipeData;
+        _pipeCall[1].clipboard = abi.encode(uint256(0));
+
+        pipeData = abi.encodeWithSelector(
+            IERC20.approve.selector, 
+            address(bondTeller), 
+            0 // will be overwritten
+        );
+        clipData = LibFlashLoan.clipboardHelper(
+            false, // send no Ether
+            0, // amount 0
+            LibFlashLoan.Type.singlePaste, // take one argument
+            1, // we want the returnData from the 2nd call
+            0, // the first output (meaning the 32 bytes starting from the 0th byte)
+            1 // to the 2nd input 
+        );
+        _pipeCall[2].target = OHM;
+        _pipeCall[2].callData = pipeData;
+        _pipeCall[2].clipboard = clipData;
+
+
+        pipeData = abi.encodeWithSelector(
+            IBondTeller.purchase.selector, 
+            PIPELINE, //recipient
+            address(0), // referrer
+            48, // marketID (check event emit)
+            0, // amount in, will be overwritten
+            0 // min Amount out
+        );
+        clipData = LibFlashLoan.clipboardHelper(
+            false, // send no Ether
+            0, // amount 0
+            LibFlashLoan.Type.singlePaste, // take one argument
+            1, // we want the returnData from the 2nd call
+            0, // the first output
+            3 // to the 2nd input
+        );
+        _pipeCall[3].target = address(bondTeller);
+        _pipeCall[3].callData = pipeData;
+        _pipeCall[3].clipboard = clipData;
 
         pipeData = abi.encodeWithSelector(
             IERC20.transfer.selector, 
             flashDepotAave,  
             (amounts[0] + amounts[0] * 9 / 10000)
         );
-        _pipeCall[2].target = address(tokens[0]);
-        _pipeCall[2].data = pipeData;
+        _pipeCall[4].target = address(tokens[0]);
+        _pipeCall[4].callData = pipeData;
+        _pipeCall[4].clipboard = abi.encode(uint256(0));
+
+        pipeData = abi.encodeWithSelector(
+            IERC20.balanceOf.selector, 
+            PIPELINE
+        );
+        _pipeCall[5].target = address(tokens[0]);
+        _pipeCall[5].callData = pipeData;
+        _pipeCall[5].clipboard = abi.encode(uint256(0));
+
+        pipeData = abi.encodeWithSelector(
+            IERC20.transfer.selector, 
+            user,  // send profits to user
+            0
+        );
+
+        clipData = LibFlashLoan.clipboardHelper(
+            false, // send no Ether
+            0, // amount 0
+            LibFlashLoan.Type.singlePaste, // take one argument
+            5, // we want the returnData from the 2nd call
+            0, // the first output
+            1 // to the 2nd input
+        );
+        _pipeCall[6].target = address(tokens[0]);
+        _pipeCall[6].callData = pipeData;
+        _pipeCall[6].clipboard = clipData;
+
 
         bytes memory data = abi.encodeWithSelector(
-            flashDepotAave.multiPipe.selector,
-            _pipeCall
+            flashDepotAave.advancedPipe.selector,
+            _pipeCall,
+            0
         );
         _farmCalls[0] = data;
         // convert farmcalls into bytes
