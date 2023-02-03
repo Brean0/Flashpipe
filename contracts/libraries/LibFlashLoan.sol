@@ -109,17 +109,14 @@ library LibFlashLoan {
         uint256 returnDataIndex,
         uint256 copyIndex,
         uint256 pasteIndex
-    ) external pure returns (bytes memory stuff) {
+    ) external pure returns (bytes memory) {
         uint256 clipboardData;
         clipboardData = clipboardData | uint256(_type) << 248;
-        
         clipboardData = clipboardData 
             | returnDataIndex << 160
             | (copyIndex * 32) + 32 << 80
             | (pasteIndex * 32) + 36;
         if (useEther) {
-            // put 0x1 in second byte 
-            // shift left 30 bytes
             clipboardData = clipboardData | 1 << 240;
             return abi.encodePacked(clipboardData, amount);
         } else {
@@ -128,6 +125,8 @@ library LibFlashLoan {
     }
 
     // TODO: test
+    // advancedClipboardHelper helps create the clipboard data for an AdvancePipeCall
+    // that takes n paste params.
     function advancedClipboardHelper(
         bool useEther,
         uint256 amount,
@@ -135,7 +134,7 @@ library LibFlashLoan {
         uint256[] calldata returnDataIndex,
         uint256[] calldata copyIndex,
         uint256[] calldata pasteIndex
-    ) external pure returns (bytes memory stuff) {
+    ) external pure returns (bytes memory clipboard) {
         uint256[] memory clipboardData;
         clipboardData[0] = clipboardData[0] | uint256(_type) << 248;
         if (useEther) {
@@ -147,11 +146,11 @@ library LibFlashLoan {
             | (copyIndex[i-2] * 32) + 32 << 80
             | (pasteIndex[i-2] * 32) + 36;
         }
-        stuff = abi.encodePacked(clipboardData[0]);
+        clipboard = abi.encodePacked(clipboardData[0]);
         for(uint i = 1; i < clipboardData.length; i++){
-            stuff = abi.encodePacked(stuff,clipboardData[i]);
+            clipboard = abi.encodePacked(clipboard,clipboardData[i]);
         }
-        stuff = abi.encodePacked(stuff,amount);
+        clipboard = abi.encodePacked(clipboard,amount);
     }
 
 }

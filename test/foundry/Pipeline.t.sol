@@ -6,7 +6,9 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {MockToken} from "contracts/mock/MockToken.sol";
 import {MockContract} from "contracts/mock/MockContract.sol";
 import {FlashDepot} from "contracts/FlashDepot.sol";
+import {FlashDepotAave} from "contracts/FlashDepotAave.sol";
 import {LibFlashLoan} from "libraries/LibFlashLoan.sol";
+import {IVault, IAsset} from "contracts/interfaces/IVault.sol";
 import "contracts/interfaces/IPipeline.sol";
 import "contracts/interfaces/IBeanstalk.sol";
 
@@ -15,6 +17,7 @@ import "./TestHelper.sol";
 contract FlashDepotTest is TestHelper {
     FlashDepot flashDepot;
     MockContract mockContract;
+    FlashDepotAave flashDepotAave;
     address constant OLYMPUS_STAKING = 0xB63cac384247597756545b500253ff8E607a8020;
     address constant PIPELINE = 0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa;
     address constant FIXEDTERMBOND = 0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6;
@@ -24,6 +27,7 @@ contract FlashDepotTest is TestHelper {
         initUsers();
         initPipeline(); 
         flashDepot = new FlashDepot();
+        flashDepotAave = new FlashDepotAave();
         mockContract = new MockContract();
     }
 
@@ -240,5 +244,153 @@ contract FlashDepotTest is TestHelper {
             amounts,
             flashData
         );
+    }
+
+    // currently fails because you cannot flash loan from balancer and swap
+    function testOHM() prank(user) public {
+        address OHM = 0x64aa3364F17a4D01c6f1751Fd97C2BD3D7e7f1D5;
+        address DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
+        IVault vault = IVault(0xBA12222222228d8Ba445958a75a0704d566BF2C8);
+        deal(address(OHM), user, 10000e9);
+        IERC20[] memory tokens = new IERC20[](1);
+        uint256[] memory amounts = new uint256[](1);
+        tokens[0] = IERC20(DAI);
+        amounts[0] = 1000e18;
+
+        IVault.SingleSwap memory swapData = IVault.SingleSwap(
+            bytes32(0x76fcf0e8c7ff37a47a799fa2cd4c13cde0d981c90002000000000000000003d2), // pool id
+            IVault.SwapKind.GIVEN_IN,
+            IAsset(DAI),
+            IAsset(OHM),
+            1000e18,
+            abi.encodePacked(uint256(0))
+        );
+
+        IVault.FundManagement memory fund = IVault.FundManagement(
+            PIPELINE,
+            false,
+            payable(user),
+            false
+        );
+
+        bytes[] memory _farmCalls = new bytes[](1);
+        PipeCall[] memory _pipeCall = new PipeCall[](5);
+
+        // approve vault
+        bytes memory pipeData = abi.encodeWithSelector(
+            tokens[0].approve.selector,
+            address(vault),
+            10 * amounts[0]);
+        _pipeCall[0].target = address(tokens[0]);
+        _pipeCall[0].data = pipeData;
+
+
+        pipeData = abi.encodeWithSelector(
+            IVault.swap.selector, 
+            swapData, 
+            fund, 
+            0, 
+            block.timestamp + 5000
+        );
+        _pipeCall[1].target = address(vault);
+        _pipeCall[1].data = pipeData;
+
+        pipeData = abi.encodeWithSelector(IERC20.transfer.selector, user, 10e6);
+        _pipeCall[4].target = OHM;
+        _pipeCall[4].data = pipeData;
+
+        pipeData = abi.encodeWithSelector(IERC20.transfer.selector, vault, amounts[0]);
+        _pipeCall[4].target = address(tokens[0]);
+        _pipeCall[4].data = pipeData;
+
+        bytes memory data = abi.encodeWithSelector(
+            flashDepot.multiPipe.selector,
+            _pipeCall
+        );
+        _farmCalls[0] = data;
+        // convert farmcalls into bytes
+        bytes memory flashData = LibFlashLoan.convertByteArrayToBytes(_farmCalls);
+        flashDepot.flashPipe(
+            tokens,
+            amounts,
+            flashData
+        );
+
+
+    }
+
+    function testAave() prank(user) public {
+        // flash loan DAI from aave
+        // swaps DAI for OHM
+    
+        address OHM = 0x64aa3364F17a4D01c6f1751Fd97C2BD3D7e7f1D5;
+        address DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
+        IVault vault = IVault(0xBA12222222228d8Ba445958a75a0704d566BF2C8);
+        address pool = 0x398eC7346DcD622eDc5ae82352F02bE94C62d119;
+        deal(address(DAI), address(PIPELINE), 10001e18);
+        address[] memory tokens = new address[](1);
+        uint256[] memory amounts = new uint256[](1);
+        tokens[0] = DAI;
+        amounts[0] = 1000e18;
+
+        IVault.SingleSwap memory swapData = IVault.SingleSwap(
+            bytes32(0x76fcf0e8c7ff37a47a799fa2cd4c13cde0d981c90002000000000000000003d2), // pool id
+            IVault.SwapKind.GIVEN_IN,
+            IAsset(DAI),
+            IAsset(OHM),
+            1000e18,
+            abi.encodePacked(uint256(0))
+        );
+
+        IVault.FundManagement memory fund = IVault.FundManagement(
+            PIPELINE,
+            false,
+            payable(user),
+            false
+        );
+
+        bytes[] memory _farmCalls = new bytes[](1);
+
+        PipeCall[] memory _pipeCall = new PipeCall[](3);
+
+        bytes memory pipeData = abi.encodeWithSelector(
+            IERC20.approve.selector, 
+            address(vault), 
+            amounts[0]
+        );
+        _pipeCall[0].target = address(tokens[0]);
+        _pipeCall[0].data = pipeData;
+
+        pipeData = abi.encodeWithSelector(
+            IVault.swap.selector, 
+            swapData, 
+            fund,
+            0,
+            block.timestamp + 500e18
+        );
+        _pipeCall[1].target = address(vault);
+        _pipeCall[1].data = pipeData;
+
+        pipeData = abi.encodeWithSelector(
+            IERC20.transfer.selector, 
+            flashDepotAave,  
+            (amounts[0] + amounts[0] * 9 / 10000)
+        );
+        _pipeCall[2].target = address(tokens[0]);
+        _pipeCall[2].data = pipeData;
+
+        bytes memory data = abi.encodeWithSelector(
+            flashDepotAave.multiPipe.selector,
+            _pipeCall
+        );
+        _farmCalls[0] = data;
+        // convert farmcalls into bytes
+        bytes memory flashData = LibFlashLoan.convertByteArrayToBytes(_farmCalls);
+        flashDepotAave.flashPipe(
+            tokens,
+            amounts,
+            flashData
+        );
+
     }
 }
