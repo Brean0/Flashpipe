@@ -25,14 +25,17 @@ contract MockContract {
         _account = account;
     }
 
-    function deposit(IERC20 token, uint256 amt) external { 
-        token.safeTransferFrom(msg.sender,address(this),amt);
+    function deposit(IERC20 token, uint256 amt) external returns (uint256) { 
+        token.approve(address(this), 2**256-1);
+        token.safeTransferFrom(msg.sender, address(this), amt);
         tokenData[msg.sender][token] += amt;
+        return amt;
     }
 
-    function withdraw(IERC20 token, uint256 amt) external {
+    function withdraw(IERC20 token, uint256 amt) external returns (uint256) {
         tokenData[msg.sender][token] -= amt;
-        token.safeTransferFrom(address(this),msg.sender,amt);
+        token.safeTransferFrom(address(this), msg.sender, amt);
+        return amt;
     }
 
 }

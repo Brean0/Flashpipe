@@ -1,3 +1,4 @@
+pragma solidity ^0.8.17;
 /// @title Contains 512-bit math functions
 /// @notice Facilitates multiplication and division that can have overflow of an intermediate value without any loss of precision
 /// @dev From: https://gist.github.com/paulrberg/439ebe860cd2f9893852e2cab5655b65

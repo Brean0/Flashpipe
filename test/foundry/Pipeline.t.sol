@@ -6,6 +6,7 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {MockToken} from "contracts/mock/MockToken.sol";
 import {MockContract} from "contracts/mock/MockContract.sol";
 import {FlashDepot} from "contracts/FlashDepot.sol";
+import {LibFlashLoan} from "libraries/LibFlashLoan.sol";
 import "contracts/interfaces/IPipeline.sol";
 import "contracts/interfaces/IBeanstalk.sol";
 import {OlympusStaking} from "contracts/Staking.sol";
@@ -21,17 +22,10 @@ contract FlashDepotTest is TestHelper {
 
     function setUp() public {
         deployMockTokens(5);
-        initUsers(2);
+        initUsers();
         initPipeline(); 
         flashDepot = new FlashDepot();
         mockContract = new MockContract();
-    }
-
-    function testAAA() public {
-        assertEq(ERC20(address(tokens[0])).symbol(), "TOKEN1");
-        assertEq(ERC20(address(tokens[0])).name(), "Token 1");
-        assertEq(ERC20(address(tokens[1])).symbol(), "TOKEN0");
-        assertEq(ERC20(address(tokens[1])).name(), "Token 0");
     }
 
     function testPipeNoValues() prank(user) public {
@@ -97,6 +91,58 @@ contract FlashDepotTest is TestHelper {
         assertEq(tokens[1].balanceOf(user), 300);
     }
 
+    function testAdvancedPipe() prank(user) public {
+        // mint some amount of mock tokens
+        // deposits mock token into mock contract, save the return value of the contract.
+        // take the return value of the contract, and use that to withdraw from the mock contract
+
+
+        AdvancedPipeCall[] memory _advancedPipeCall = new AdvancedPipeCall[](4);
+
+        // clipboard is set to nothing as there is no data to take from before
+        bytes memory data = abi.encodeWithSelector(
+            MockToken.mint.selector, 
+            PIPELINE, 
+            100
+        );
+        _advancedPipeCall[0].target = address(tokens[0]);
+        _advancedPipeCall[0].callData = data;
+        _advancedPipeCall[0].clipboard = abi.encodePacked(uint256(0));
+
+        // clipboard is 0 here as there is no data we need from the previous call
+        data = abi.encodeWithSelector(
+            IERC20.approve.selector, 
+            mockContract, 
+            100
+        );
+        _advancedPipeCall[1].target = address(tokens[0]);
+        _advancedPipeCall[1].callData = data;
+        _advancedPipeCall[1].clipboard = abi.encodePacked(uint256(0),uint16(0));
+        
+        // clipboard is 0 here as there is no data we need from the previous call
+        data = abi.encodeWithSelector(MockContract.deposit.selector, tokens[0], 100);
+        _advancedPipeCall[2].target = address(mockContract);
+        _advancedPipeCall[2].callData = data;
+        _advancedPipeCall[2].clipboard = abi.encodePacked(uint256(0),uint16(0));
+
+        // we want to take the first output from the last call (call 2)
+        data = abi.encodeWithSelector(MockContract.withdraw.selector, tokens[0], 0);
+        bytes memory clipData = LibFlashLoan.clipboardHelper(
+            false,
+            0,
+            LibFlashLoan.clipBoardType.singlePaste,
+            2, // we want the returnData from the 2nd call
+            0, // the first output (meaning the 32 bytes starting from the 0th byte)
+            1 // to the 2nd input (we want to start at 32)
+        );
+        _advancedPipeCall[3].target = address(mockContract);
+        _advancedPipeCall[3].callData = data;
+        _advancedPipeCall[3].clipboard = clipData;
+        
+        flashDepot.advancedPipe(_advancedPipeCall,0);
+    }
+
+
     function testFarm() prank(user) public {
         // mint and transfer
         tokens[0].approve(address(flashDepot), (2 ** 256 - 1));
@@ -153,41 +199,35 @@ contract FlashDepotTest is TestHelper {
         IERC20[] memory tokens = new IERC20[](1);
         uint256[] memory amounts = new uint256[](1);
         tokens[0] = IERC20(DAI);
-        amounts[0] = 1000e18;
+        amounts[0] = 1000e9;
 
         //user deposits DAI into a mock contract, withdraws the same amount
         // wrap pipe call into farm calls
         bytes[] memory _farmCalls = new bytes[](1);
-        
-        // transfer asset into pipeline
-        // bytes memory data1 = abi.encodeWithSelector(
-        //     flashDepot.transferToken.selector,
-        //     tokens[0],
-        //     pipeline,
-        //     100,
-        //     From.EXTERNAL,
-        //     To.EXTERNAL
-        // );
-        // _farmCalls[0] = data;
 
 
-        PipeCall[] memory _pipeCall = new PipeCall[](4);
+        PipeCall[] memory _pipeCall = new PipeCall[](5);
 
-        bytes memory pipeData = abi.encodeWithSelector(IERC20(DAI).approve.selector,mockContract,amounts[0]);
-        _pipeCall[0].target = address(IERC20(DAI));
+        bytes memory pipeData = abi.encodeWithSelector(tokens[0].approve.selector, mockContract, 10 * amounts[0]);
+        _pipeCall[0].target = address(tokens[0]);
         _pipeCall[0].data = pipeData;
 
-        pipeData = abi.encodeWithSelector(MockContract.deposit.selector,tokens[0],amounts[0]);
-        _pipeCall[1].target = address(mockContract);
+        pipeData = abi.encodeWithSelector(tokens[0].approve.selector, msg.sender, amounts[0]);
+        _pipeCall[1].target = address(tokens[0]);
         _pipeCall[1].data = pipeData;
 
-        pipeData = abi.encodeWithSelector(MockContract.withdraw.selector,tokens[0],amounts[0]);
+
+        pipeData = abi.encodeWithSelector(MockContract.deposit.selector, tokens[0], amounts[0]);
         _pipeCall[2].target = address(mockContract);
         _pipeCall[2].data = pipeData;
 
-        pipeData = abi.encodeWithSelector(IERC20(DAI).transfer.selector,vault,amounts[0]);
-        _pipeCall[3].target = address(IERC20(DAI));
+        pipeData = abi.encodeWithSelector(MockContract.withdraw.selector, tokens[0], amounts[0]);
+        _pipeCall[3].target = address(mockContract);
         _pipeCall[3].data = pipeData;
+
+        pipeData = abi.encodeWithSelector(tokens[0].transfer.selector, vault, amounts[0]);
+        _pipeCall[4].target = address(tokens[0]);
+        _pipeCall[4].data = pipeData;
 
         bytes memory data = abi.encodeWithSelector(
             flashDepot.multiPipe.selector,
@@ -195,7 +235,7 @@ contract FlashDepotTest is TestHelper {
         );
         _farmCalls[0] = data;
         // convert farmcalls into bytes
-        bytes memory flashData = flashDepot.convertByteArrayToBytes(_farmCalls);
+        bytes memory flashData = LibFlashLoan.convertByteArrayToBytes(_farmCalls);
         flashDepot.flashPipe(
             tokens,
             amounts,
