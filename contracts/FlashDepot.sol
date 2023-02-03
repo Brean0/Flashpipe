@@ -35,7 +35,42 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
     IBeanstalk private constant beanstalk =
         IBeanstalk(0xC1E088fC1323b20BCBee9bd1B9fC9546db5624C5);
     address private constant vault = 
-        address(0xBA12222222228d8Ba445958a75a0704d566BF2C8);
+        0xBA12222222228d8Ba445958a75a0704d566BF2C8;
+
+    /**
+     * 
+     * FlashPipe
+     * 
+    **/
+
+    // flash pipe embeds a flash loan call to balancer.
+    // flash pipe calls {farm}, and converts data into bytes
+    // to be compatable with pipeline. 
+    function flashPipe(
+        IERC20[] memory tokens,
+        uint256[] memory amounts,
+        bytes memory data
+    ) external {
+        IVault(vault).flashLoan(IFlashLoanRecipient(this), tokens, amounts, data);
+    }
+
+    function receiveFlashLoan(
+        IERC20[] memory tokens,
+        uint256[] memory amounts,
+        uint256[] memory,
+        bytes memory userData
+    ) external override {
+        require(msg.sender == vault);
+        LibFlashLoan.transferTokens(
+            tokens,
+            amounts,
+            DepotFacet.PIPELINE
+        );
+
+        if(userData.length != 0) {
+            this.farm(LibFlashLoan.convertBytesToArray(userData));
+        } 
+    }
 
     /**
      * 
@@ -182,36 +217,4 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
     ) external payable {
         beanstalk.permitDeposits(owner, spender, tokens, values, deadline, v, r, s);
     }
-
-    
-    // flash pipe embeds a flash loan call to balancer.
-    // flash pipe calls {farm}, and converts data into bytes
-    // to be compatable with pipeline. 
-    function flashPipe(
-        IERC20[] memory tokens,
-        uint256[] memory amounts,
-        bytes memory data
-    ) external {
-        IVault(vault).flashLoan(IFlashLoanRecipient(this), tokens, amounts, data);
-    }
-
-    function receiveFlashLoan(
-        IERC20[] memory tokens,
-        uint256[] memory amounts,
-        uint256[] memory,
-        bytes memory userData
-    ) external override {
-        require(msg.sender == vault);
-        // call farm with data
-        // transfer tokens to pipeline
-        // transfer tokens back
-        for(uint i; i < tokens.length; ++i ){
-            tokens[i].transfer(DepotFacet.PIPELINE, amounts[i]);
-        }
-
-        if(userData.length != 0) {
-            this.farm(LibFlashLoan.convertBytesToArray(userData));
-        } 
-    }
-
 }

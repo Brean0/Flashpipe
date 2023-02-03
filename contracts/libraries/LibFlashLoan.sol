@@ -24,12 +24,13 @@ library LibFlashLoan {
     }
     
     // transfer flashed tokens
-    function TransferFlashedTokens(
+    function transferTokens(
         IERC20[] memory tokens,
-        uint256[] memory amounts
+        uint256[] memory amounts,
+        address to
     ) internal returns (bool success) {
         for(uint i; i < tokens.length; i++){
-            tokens[i].transfer(address(0xBA12222222228d8Ba445958a75a0704d566BF2C8), amounts[i]);
+            tokens[i].transfer(to, amounts[i]);
         }
         return true;
     }
