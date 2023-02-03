@@ -125,7 +125,13 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         if (fromMode == From.EXTERNAL) {
             token.transferFrom(msg.sender, recipient, amount);
         } else if (fromMode == From.INTERNAL) {
-            beanstalk.transferInternalTokenFrom(token, msg.sender, recipient, amount, toMode);
+            beanstalk.transferInternalTokenFrom(
+                token, 
+                msg.sender, 
+                recipient, 
+                amount, 
+                toMode
+            );
         } else {
             revert("Mode not supported");
         }
@@ -143,7 +149,13 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         uint256 amount
     ) external payable returns (uint256 bdv) {
         require(sender == msg.sender, "invalid sender");
-        bdv = beanstalk.transferDeposit(msg.sender, recipient, token, season, amount);
+        bdv = beanstalk.transferDeposit(
+            msg.sender, 
+            recipient, 
+            token, 
+            season, 
+            amount
+        );
     }
 
     /**
@@ -158,7 +170,13 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         uint256[] calldata amounts
     ) external payable returns (uint256[] memory bdvs) {
         require(sender == msg.sender, "invalid sender");
-        bdvs = beanstalk.transferDeposits(msg.sender, recipient, token, seasons, amounts);
+        bdvs = beanstalk.transferDeposits(
+            msg.sender, 
+            recipient, 
+            token, 
+            seasons, 
+            amounts
+        );
     }
 
     /**
@@ -181,7 +199,16 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         bytes32 r,
         bytes32 s
     ) external payable {
-        beanstalk.permitToken(owner, spender, token, value, deadline, v, r, s);
+        beanstalk.permitToken(
+            owner, 
+            spender, 
+            token, 
+            value, 
+            deadline, 
+            v, 
+            r, 
+            s
+        );
     }
 
     /**
@@ -198,7 +225,16 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         bytes32 r,
         bytes32 s
     ) external payable {
-        beanstalk.permitDeposit(owner, spender, token, value, deadline, v, r, s);
+        beanstalk.permitDeposit(
+            owner, 
+            spender, 
+            token, 
+            value, 
+            deadline, 
+            v, 
+            r, 
+            s
+        );
     }
 
     /**
@@ -215,6 +251,67 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
         bytes32 r,
         bytes32 s
     ) external payable {
-        beanstalk.permitDeposits(owner, spender, tokens, values, deadline, v, r, s);
+        beanstalk.permitDeposits(
+            owner, 
+            spender, 
+            tokens, 
+            values, 
+            deadline, 
+            v, 
+            r, 
+            s
+        );
+    }
+
+    function convertByteArrayToBytes(bytes[] memory data) 
+        external 
+        pure 
+        returns (bytes memory) 
+    {
+        return LibFlashLoan.convertByteArrayToBytes(data);
+    }
+
+    function convertBytesToArray(bytes calldata data) 
+        external 
+        pure 
+        returns(bytes[] memory)
+    {
+        return LibFlashLoan.convertBytesToArray(data);
+    }
+
+    function clipboardHelper(
+        bool useEther,
+        uint256 amount,
+        LibFlashLoan.Type _type,
+        uint256 returnDataIndex,
+        uint256 copyIndex,
+        uint256 pasteIndex
+    ) external pure returns (bytes memory stuff) {
+        return LibFlashLoan.clipboardHelper(
+            useEther,
+            amount,
+            _type,
+            returnDataIndex,
+            copyIndex,
+            pasteIndex
+        );
+    }
+
+    function advancedClipboardHelper(
+        bool useEther,
+        uint256 amount,
+        LibFlashLoan.Type _type,
+        uint256[] calldata returnDataIndex,
+        uint256[] calldata copyIndex,
+        uint256[] calldata pasteIndex
+    ) external pure returns (bytes memory stuff) {
+        return LibFlashLoan.advancedClipboardHelper(
+            useEther,
+            amount,
+            _type,
+            returnDataIndex,
+            copyIndex,
+            pasteIndex
+        );
     }
 }

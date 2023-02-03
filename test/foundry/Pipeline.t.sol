@@ -9,7 +9,6 @@ import {FlashDepot} from "contracts/FlashDepot.sol";
 import {LibFlashLoan} from "libraries/LibFlashLoan.sol";
 import "contracts/interfaces/IPipeline.sol";
 import "contracts/interfaces/IBeanstalk.sol";
-import {OlympusStaking} from "contracts/Staking.sol";
 
 import "./TestHelper.sol";
 
@@ -130,7 +129,7 @@ contract FlashDepotTest is TestHelper {
         bytes memory clipData = LibFlashLoan.clipboardHelper(
             false,
             0,
-            LibFlashLoan.clipBoardType.singlePaste,
+            LibFlashLoan.Type.singlePaste,
             2, // we want the returnData from the 2nd call
             0, // the first output (meaning the 32 bytes starting from the 0th byte)
             1 // to the 2nd input (we want to start at 32)

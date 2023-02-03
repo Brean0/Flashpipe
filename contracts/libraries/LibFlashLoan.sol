@@ -17,7 +17,7 @@ import "./LibFunction.sol";
 
 library LibFlashLoan {
 
-    enum clipBoardType {
+    enum Type {
         basic,
         singlePaste,
         MultiPaste
@@ -28,7 +28,7 @@ library LibFlashLoan {
         IERC20[] memory tokens,
         uint256[] memory amounts,
         address to
-    ) internal returns (bool success) {
+    ) external returns (bool success) {
         for(uint i; i < tokens.length; i++){
             tokens[i].transfer(to, amounts[i]);
         }
@@ -41,36 +41,23 @@ library LibFlashLoan {
     // [1 bytes     |2 bytes           | X bytes  | 2 bytes         | X bytes           ]
     // [data.length | data[0].length   | data[0]  | bytes[n].length | farmDataBytes[n]  ]
     // should be used externally to prepare data
-    /// @notice CORRECT
     function convertByteArrayToBytes(bytes[] memory data) external pure returns (bytes memory) {
+        
         uint256 totalLength = 1;
-        // for every index, we add the length of the array and 2, to account for the length
         for(uint i; i < data.length; ++i){
             totalLength += data[i].length + 2;
-        }
-        
+        } 
         bytes memory _data = new bytes(totalLength);
         _data = LibFunction.paste32Bytes(abi.encodePacked(data.length),_data,63,32);
-        // console.log("lengthBytes:");
-        // console.logBytes(_data);
         uint256 prevLength = 1;
         for(uint i; i < data.length; ++i){
-            // if the length is greater than 30, we need to loop as we can only paste 32 bytes at a time
             if(data[i].length <= 30){
                 _data = LibFunction.paste32Bytes(data[i],_data,30,32 + prevLength);
                 prevLength = prevLength + data[i].length + 1;
             } else {
-                // 34 byte number -> 2 loops, 1 32 + 4 
-                // 33 byte number -> 2 loops
-                // 31 byte -> 2 loops
-                // 30 byte number -> 1 loops
-                uint256 loops = (((data[i].length) + 1)/ 32) + 1; // 17 loops -> 17 * 32 = 544-32 + 6 = 518 
+                uint256 loops = (((data[i].length) + 1)/ 32) + 1;
                 uint256 mod = (data[i].length + 2) % 32;
-                // console.log("loops:", loops);
-                // console.log("mod: ", mod);
-                _data = LibFunction.paste32Bytes(data[i],_data,30,32 + prevLength);
-                prevLength = prevLength + 32;
-                uint j = 1;
+                uint j;
                 for(j ;j < loops - 1 ; ++j){
                     _data = LibFunction.paste32Bytes(data[i],_data,30 + 32*j,32 + prevLength);
                     prevLength = prevLength + 32;
@@ -85,13 +72,9 @@ library LibFlashLoan {
 
     // converts a bytes into a bytes memory, based on the format from `convertByteArrayToBytes`
     function convertBytesToArray(bytes calldata data) external pure returns(bytes[] memory) {
-        // get first byte 
+        
         bytes1 length = data[0];
-
-        // use that to determine length of data
-        bytes[] memory returnData = new bytes[](uint8(length));
-
-        // get next byte representing length of data: 
+        bytes[] memory returnData = new bytes[](uint8(length)); 
         bytes memory dataLength;
         uint256 lengthOfData;
         uint256 startIndex = 2;
@@ -99,8 +82,6 @@ library LibFlashLoan {
         for(uint i; i < returnData.length; i++){
             startIndex = startIndex + lengthOfData + 1; //
             dataLength = data[startIndex - 2 : startIndex];  
-            // assembly to load 32 bytes into uint256 
-            // note we only need the first 2 bytes, so we shift by 30 bytes
             assembly {
                 lengthOfData := shr(240,mload(add(dataLength, 0x20)))
             }
@@ -124,7 +105,7 @@ library LibFlashLoan {
     function clipboardHelper (
         bool useEther,
         uint256 amount,
-        clipBoardType _type,
+        Type _type,
         uint256 returnDataIndex,
         uint256 copyIndex,
         uint256 pasteIndex
@@ -146,10 +127,11 @@ library LibFlashLoan {
         }
     }
 
+    // TODO: test
     function advancedClipboardHelper(
         bool useEther,
         uint256 amount,
-        clipBoardType _type,
+        Type _type,
         uint256[] calldata returnDataIndex,
         uint256[] calldata copyIndex,
         uint256[] calldata pasteIndex
