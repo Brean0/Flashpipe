@@ -41,55 +41,55 @@ library LibFlashLoan {
     // [1 bytes     |2 bytes           | X bytes  | 2 bytes         | X bytes           ]
     // [data.length | data[0].length   | data[0]  | bytes[n].length | farmDataBytes[n]  ]
     // should be used externally to prepare data
-    function convertByteArrayToBytes(bytes[] memory data) external pure returns (bytes memory) {
+    // function convertByteArrayToBytes(bytes[] memory data) external pure returns (bytes memory) {
         
-        uint256 totalLength = 1;
-        for(uint i; i < data.length; ++i){
-            totalLength += data[i].length + 2;
-        } 
-        bytes memory _data = new bytes(totalLength);
-        _data = LibFunction.paste32Bytes(abi.encodePacked(data.length),_data,63,32);
-        uint256 prevLength = 1;
-        for(uint i; i < data.length; ++i){
-            if(data[i].length <= 30){
-                _data = LibFunction.paste32Bytes(data[i],_data,30,32 + prevLength);
-                prevLength = prevLength + data[i].length + 1;
-            } else {
-                uint256 loops = (((data[i].length) + 1)/ 32) + 1;
-                uint256 mod = (data[i].length + 2) % 32;
-                uint j;
-                for(j ;j < loops - 1 ; ++j){
-                    _data = LibFunction.paste32Bytes(data[i],_data,30 + 32*j,32 + prevLength);
-                    prevLength = prevLength + 32;
-                }
-                _data = LibFunction.paste32Bytes(data[i],_data,30 + 32*j,32 + prevLength);
-                prevLength = prevLength + mod;
-            }
-        }
-         return _data;
-    }
+    //     uint256 totalLength = 1;
+    //     for(uint i; i < data.length; ++i){
+    //         totalLength += data[i].length + 2;
+    //     } 
+    //     bytes memory _data = new bytes(totalLength);
+    //     _data = LibFunction.paste32Bytes(abi.encodePacked(data.length),_data,63,32);
+    //     uint256 prevLength = 1;
+    //     for(uint i; i < data.length; ++i){
+    //         if(data[i].length <= 30){
+    //             _data = LibFunction.paste32Bytes(data[i],_data,30,32 + prevLength);
+    //             prevLength = prevLength + data[i].length + 1;
+    //         } else {
+    //             uint256 loops = (((data[i].length) + 1)/ 32) + 1;
+    //             uint256 mod = (data[i].length + 2) % 32;
+    //             uint j;
+    //             for(j ;j < loops - 1 ; ++j){
+    //                 _data = LibFunction.paste32Bytes(data[i],_data,30 + 32*j,32 + prevLength);
+    //                 prevLength = prevLength + 32;
+    //             }
+    //             _data = LibFunction.paste32Bytes(data[i],_data,30 + 32*j,32 + prevLength);
+    //             prevLength = prevLength + mod;
+    //         }
+    //     }
+    //      return _data;
+    // }
 
 
-    // converts a bytes into a bytes memory, based on the format from `convertByteArrayToBytes`
-    function convertBytesToArray(bytes calldata data) external pure returns(bytes[] memory) {
+    // // converts a bytes into a bytes memory, based on the format from `convertByteArrayToBytes`
+    // function convertBytesToArray(bytes calldata data) external pure returns(bytes[] memory) {
         
-        bytes1 length = data[0];
-        bytes[] memory returnData = new bytes[](uint8(length)); 
-        bytes memory dataLength;
-        uint256 lengthOfData;
-        uint256 startIndex = 2;
+    //     bytes1 length = data[0];
+    //     bytes[] memory returnData = new bytes[](uint8(length)); 
+    //     bytes memory dataLength;
+    //     uint256 lengthOfData;
+    //     uint256 startIndex = 2;
 
-        for(uint i; i < returnData.length; i++){
-            startIndex = startIndex + lengthOfData + 1; //
-            dataLength = data[startIndex - 2 : startIndex];  
-            assembly {
-                lengthOfData := shr(240,mload(add(dataLength, 0x20)))
-            }
-            returnData[i] = data[startIndex : startIndex + uint16(lengthOfData)];  
+    //     for(uint i; i < returnData.length; i++){
+    //         startIndex = startIndex + lengthOfData + 1; //
+    //         dataLength = data[startIndex - 2 : startIndex];  
+    //         assembly {
+    //             lengthOfData := shr(240,mload(add(dataLength, 0x20)))
+    //         }
+    //         returnData[i] = data[startIndex : startIndex + uint16(lengthOfData)];  
             
-        }
-        return returnData;
-    }
+    //     }
+    //     return returnData;
+    // }
 
     // clipboardHelper helps create the clipboard data for an AdvancePipeCall
     /// 

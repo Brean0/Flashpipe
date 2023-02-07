@@ -80,7 +80,7 @@ contract FlashDepotAave is IFlashLoanReceiver, DepotFacet, TokenSupportFacet {
         }
 
         if(userData.length != 0) {
-            this.farm(LibFlashLoan.convertBytesToArray(userData));
+            this.farm(abi.decode(userData, (bytes[])));
         }
 
         for (uint i = 0; i < assets.length; i++) {
@@ -279,22 +279,6 @@ contract FlashDepotAave is IFlashLoanReceiver, DepotFacet, TokenSupportFacet {
             r, 
             s
         );
-    }
-
-    function convertByteArrayToBytes(bytes[] memory data) 
-        external 
-        pure 
-        returns (bytes memory) 
-    {
-        return LibFlashLoan.convertByteArrayToBytes(data);
-    }
-
-    function convertBytesToArray(bytes calldata data) 
-        external 
-        pure 
-        returns(bytes[] memory)
-    {
-        return LibFlashLoan.convertBytesToArray(data);
     }
 
     function clipboardHelper(

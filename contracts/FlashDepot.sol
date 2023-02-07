@@ -67,8 +67,8 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
             DepotFacet.PIPELINE
         );
 
-        if(userData.length != 0) {
-            this.farm(LibFlashLoan.convertBytesToArray(userData));
+    if(userData.length != 0) {
+            this.farm(abi.decode(userData, (bytes[])));
         } 
     }
 
@@ -261,22 +261,6 @@ contract FlashDepot is IFlashLoanRecipient, DepotFacet, TokenSupportFacet {
             r, 
             s
         );
-    }
-
-    function convertByteArrayToBytes(bytes[] memory data) 
-        external 
-        pure 
-        returns (bytes memory) 
-    {
-        return LibFlashLoan.convertByteArrayToBytes(data);
-    }
-
-    function convertBytesToArray(bytes calldata data) 
-        external 
-        pure 
-        returns(bytes[] memory)
-    {
-        return LibFlashLoan.convertBytesToArray(data);
     }
 
     function clipboardHelper(
