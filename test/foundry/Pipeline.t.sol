@@ -234,7 +234,7 @@ contract FlashDepotTest is TestHelper {
         );
         _farmCalls[0] = data;
         // convert farmcalls into bytes
-        bytes memory flashData = LibFlashLoan.convertByteArrayToBytes(_farmCalls);
+        bytes memory flashData = abi.encode(_farmCalls);
         flashDepot.flashPipe(
             tokens,
             amounts,
