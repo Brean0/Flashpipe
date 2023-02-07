@@ -44,7 +44,7 @@ Flashpipe is not audited (yet)
 |:-----------|:-----------------------------------------------------------------------------------------------------------------------|
 |  Pipeline  | [0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa](https://etherscan.io/address/0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa)  |
 |  Depot     | [0xDEb0f000082fD56C10f449d4f8497682494da84D](https://etherscan.io/address/0xDEb0f000082fD56C10f449d4f8497682494da84D)  |
-|  FlashPipe | [0x000000000000cb991C1aB267427ddbC16d2c26C0](https://etherscan.io/address/0x000000000000cb991c1ab267427ddbc16d2c26c0)  |
+|  FlashPipe | [0x0000000000A5942c6C6f3Db9B9f51400E32334E4](https://etherscan.io/address/0x0000000000A5942c6C6f3Db9B9f51400E32334E4)  |
 
 ## License
 
