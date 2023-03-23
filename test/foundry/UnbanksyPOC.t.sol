@@ -16,7 +16,10 @@ contract UnbanksyPOC is TestHelper {
     IWETH weth;
     address constant OLYMPUS_STAKING = 0xB63cac384247597756545b500253ff8E607a8020;
     address constant PIPELINE = 0xb1bE0000bFdcDDc92A8290202830C4Ef689dCeaa;
-    address constant FIXEDTERMBOND = 0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6;
+    address gOHM = 0x0ab87046fBb341D058F17CBC4c1133F25a20a52f;
+    address OHM = 0x64aa3364F17a4D01c6f1751Fd97C2BD3D7e7f1D5;
+    address OHMFRAXBP = 0x5271045F7B73c17825A7A7aee6917eE46b0B7520;
+    address yOHMFRAXBP = 0x7788A5492bc948e1d8c2caa53b2e0a60ed5403b0;
 
     function setUp() public {
         deployMockTokens(5);
@@ -33,11 +36,6 @@ contract UnbanksyPOC is TestHelper {
         // 2: LPs OHM into OHM-FRAXBP pool 
         // 3: deposits OHM-FRAXBP convex vault
         vm.pauseGasMetering(); // disable gas metering for calculating gas costs
-        
-        address gOHM = 0x0ab87046fBb341D058F17CBC4c1133F25a20a52f;
-        address OHM = 0x64aa3364F17a4D01c6f1751Fd97C2BD3D7e7f1D5;
-        address OHMFRAXBP = 0x5271045F7B73c17825A7A7aee6917eE46b0B7520;
-        address yOHMFRAXBP = 0x7788A5492bc948e1d8c2caa53b2e0a60ed5403b0;
 
         // deal 100 gOHM to the user:
         deal(address(gOHM), user, 100e18);
@@ -149,9 +147,17 @@ contract UnbanksyPOC is TestHelper {
             2 ** 256 - 1
         );
         depot.multiPipe(_pipeCall);
+        console.log("user's balance of gOHM before: ", IERC20(gOHM).balanceOf(user));
+        console.log("user's balance of yOHMFRAX-BP before: ", IERC20(yOHMFRAXBP).balanceOf(user));
+
         vm.resumeGasMetering(); // resume gas costs
 
         // convert farmcalls into bytes
         depot.farm(_farmCalls);
+
+        vm.pauseGasMetering(); // resume gas costs
+        console.log("user's balance of gOHM after: ", IERC20(gOHM).balanceOf(user));
+        console.log("user's balance of yOHMFRAX-BP after: ", IERC20(yOHMFRAXBP).balanceOf(user));
+        vm.resumeGasMetering();
     }
 }
