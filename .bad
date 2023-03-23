@@ -1,0 +1,8 @@
+FlashDepotTest:testAdvancedPipe() (gas: 186584)
+FlashDepotTest:testFarm() (gas: 118519)
+FlashDepotTest:testFlashLoanNoDataRevert() (gas: 102664)
+FlashDepotTest:testFlashLoanStaticData() (gas: 270038)
+FlashDepotTest:testMultiPipeNoValues() (gas: 69095)
+FlashDepotTest:testMultiPipeValues() (gas: 151739)
+FlashDepotTest:testPipeNoValues() (gas: 32113)
+FlashDepotTest:testPipeValues() (gas: 77276)
